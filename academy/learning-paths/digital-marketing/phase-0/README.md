@@ -19,12 +19,12 @@ Establish the conceptual foundation required to operate within any digital marke
 
 ## Modules
 
-### The Digital Marketing Landscape
+### The Digital Marketing Landscape — Completed
 
-- What Is Digital Marketing
-- Digital vs. Traditional Marketing
-- Core Digital Marketing Channels
-- Digital Marketing Careers
+- What Is Digital Marketing (Published)
+- Digital vs. Traditional Marketing (Published)
+- Core Digital Marketing Channels (Published)
+- Digital Marketing Careers (Published)
 
 ---
 
