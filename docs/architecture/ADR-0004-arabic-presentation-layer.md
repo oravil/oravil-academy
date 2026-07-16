@@ -62,6 +62,8 @@ Each language variant is stored as a separate file inside a named lesson directo
 
 This structure is adopted as a scalability decision. As additional languages are introduced, each is added as a new file inside the existing lesson directory without renaming or reorganizing existing files. The lesson directory name is the stable identifier. The language code is the variant selector.
 
+**Production artifacts — lesson briefs and author notes — are not language variants.** They exist only in English and are not placed inside the lesson directory. Lesson briefs and author notes remain flat at the module level, following the existing naming convention (`lesson-[nn]-brief.md`, `lesson-[nn]-author-notes.md`). The lesson directory contains only language-rendered content files.
+
 ### Source Metadata
 
 Every Arabic lesson file must begin with the following metadata block:
@@ -150,9 +152,11 @@ Production effort increases because every approved English lesson requires an ad
 
 - The lesson directory structure must be applied to all lessons that require an Arabic rendering.
 - English-only lessons (produced before Arabic rendering begins) use a flat file structure and are migrated to the directory structure when Arabic rendering is introduced.
+- Lesson briefs and author notes remain flat at the module level and are not placed inside the lesson directory.
 - Every Arabic lesson file must carry the mandatory source metadata fields defined in this ADR.
-- The Content Lifecycle (OA-GOV-001) must be updated to include the Arabic rendering and Arabic review stages.
+- The Content Lifecycle (OA-GOV-001) must be updated to include the Arabic rendering and Arabic review stages, and to define the Arabic Reviewer role.
 - `docs/references/GLOSSARY.md` must be established and maintained as the single terminology authority.
+- `docs/standards/ARABIC_STYLE_STANDARD.md` (OA-STD-010) defines the register, sentence style, example localisation rules, and terminology policy for all Arabic renderings. The Arabic Review stage uses OA-STD-010 as its acceptance standard.
 - The Product Backlog item for Arabic localization capability is considered active under this ADR.
 
 ---

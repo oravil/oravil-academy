@@ -134,15 +134,65 @@ No stage may be skipped. Every artifact must exist before the next is created.
 
 ## Publication
 
-**Purpose:** Commit the approved lesson to the repository and mark it as published.
+**Purpose:** Commit the approved English lesson to the repository as an internal canonical artifact.
 
 **Owner:** Product Owner or delegated contributor
 
 **Deliverables:**
 
-- Lesson file committed to the correct module directory.
+- English lesson file committed to the correct module directory (`lesson-[nn]/en.md`).
 - Module Brief updated to reflect lesson status if applicable.
 - Phase README reflects current production state.
+
+---
+
+## Arabic Rendering
+
+**Purpose:** Produce an Arabic rendering of the approved English lesson, compliant with `ARABIC_STYLE_STANDARD.md` (OA-STD-010).
+
+**Owner:** Content Author (under instruction from Product Owner)
+
+**Prerequisites:** The English lesson is approved and committed.
+
+**Output:** `lesson-[nn]/ar.md` containing the Arabic rendering with mandatory source metadata fields as defined in ADR-0004.
+
+**Exit Criteria:** The Arabic rendering is complete, all source metadata fields are populated, Sync Status is set to Synced, and the file is submitted for Arabic Review.
+
+---
+
+## Arabic Review
+
+**Purpose:** Verify the Arabic rendering against the approved English source and against `ARABIC_STYLE_STANDARD.md` (OA-STD-010) before pilot publication.
+
+**Owner:** Arabic Reviewer
+
+**Current Holder:** Product Owner (acting Arabic Reviewer for v0.1 pilot)
+
+**Acceptance Criteria:**
+
+- Register complies with OA-STD-010 Section 2 (simplified professional Arabic; no classical; no colloquial).
+- Sentence style complies with OA-STD-010 Section 3.
+- All examples comply with OA-STD-010 Section 4 (Egyptian-market localisation applied).
+- Industry terms comply with OA-STD-010 Section 5 (retained in English with first-occurrence Arabic explanation).
+- All translated terms match the approved entries in `docs/references/GLOSSARY.md`.
+- Meaning parity with the English source is confirmed (OA-STD-010 Section 7).
+- No content has been added or removed relative to the English source.
+- Source metadata block is complete and accurate.
+
+**Exit Criteria:** All acceptance criteria are confirmed by the Arabic Reviewer. All issues are resolved before the Arabic lesson proceeds to Pilot Publication.
+
+---
+
+## Pilot Publication (AR)
+
+**Purpose:** Commit the approved Arabic rendering and mark it as ready for the pilot.
+
+**Owner:** Product Owner or delegated contributor
+
+**Deliverables:**
+
+- Arabic lesson file (`ar.md`) committed to the correct lesson directory.
+- Sync Status metadata confirmed as Synced.
 
 ---
 
@@ -155,20 +205,30 @@ No stage may be skipped. Every artifact must exist before the next is created.
 | **Content Author** | Produces lesson content from approved Lesson Briefs. Follows `LESSON_STANDARD.md` in full. |
 | **Technical Reviewer** | Verifies factual accuracy, technical correctness, and currency of all lesson content. |
 | **Educational Reviewer** | Verifies instructional design quality: objective alignment, clarity, progression, and assessment validity. |
-| **AI Agent** | May produce Module Briefs, Lesson Briefs, and lesson drafts when operating under an approved task. Must follow all lifecycle rules. May not approve its own output. |
+| **Arabic Reviewer** | Verifies Arabic renderings against `ARABIC_STYLE_STANDARD.md` and `docs/references/GLOSSARY.md`. Confirms meaning parity with the English source. Current holder for v0.1: Product Owner. |
+| **AI Agent** | May produce Module Briefs, Lesson Briefs, lesson drafts, and Arabic renderings when operating under an approved task. Must follow all lifecycle rules. May not approve its own output. |
 
 ---
 
 # 6. Quality Gates
 
-Every lesson must pass all four gates in sequence. No gate may be skipped or combined.
+Every lesson must pass all gates in sequence. No gate may be skipped or combined.
+
+**English content gates:**
 
 | Gate | Verified By |
 |---|---|
 | Module Brief Review | Curriculum Architect + Product Owner |
 | Technical Review | Technical Reviewer |
 | Educational Review | Educational Reviewer |
-| Final Approval | Product Owner |
+| Final Approval (EN) | Product Owner |
+
+**Arabic rendering gates:**
+
+| Gate | Verified By |
+|---|---|
+| Arabic Review | Arabic Reviewer |
+| Pilot Publication Approval (AR) | Product Owner |
 
 A lesson that fails any gate returns to the previous stage. It may not advance until all issues are resolved.
 

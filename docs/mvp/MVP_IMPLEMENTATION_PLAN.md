@@ -37,7 +37,7 @@ Each step is a vertical slice that produces working, integrated software. Steps 
 Establish the repository structure, database connection, authentication token verification, and a health check endpoint. This step produces no learner-facing feature but confirms that the technical foundation is operational before any feature work begins.
 
 **Step 2 — Content Seeding**
-Seed the database with the learning path, phase, module, lessons, assignments, and survey for Phase 0, Module 1 as defined in OA-MVP-006. This step confirms that all content is correctly structured and queryable before any feature depends on it.
+Seed the database with the learning path, phase, module, lessons, assignments, and survey for Phase 0, Module 1 as defined in OA-MVP-006. Lesson and assignment content is sourced from the approved Arabic renderings (`lesson-[nn]/ar.md`). Step 2 is conditional on all four Module 1 Arabic renderings being approved. The `lessons.content` column stores Arabic text only for v0.1; a `locale` column is deferred per ADR-0004. This step confirms that all content is correctly structured and queryable before any feature depends on it.
 
 **Step 3 — Authentication**
 Implement the learner authentication flow: token issuance on access and token verification on every subsequent request. This step produces a learner who can authenticate and receive a token that is accepted by the API.

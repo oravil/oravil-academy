@@ -85,10 +85,12 @@ The Module Overview is the learner's entry point into the learning experience. I
 - Seed one `learning_paths` row: Digital Marketing.
 - Seed one `phases` row: Phase 0 — Foundations.
 - Seed one `modules` row: Module 1 — The Digital Marketing Landscape, with deliverable description.
-- Seed four `lessons` rows in position order: Lesson 1 — What Is Digital Marketing, Lesson 2 — Digital vs. Traditional Marketing, Lesson 3 — Core Digital Marketing Channels, Lesson 4 — Digital Marketing Careers. Full lesson content sourced from the published lesson files in `academy/learning-paths/digital-marketing/phase-0/module-1/`.
-- Seed four `assignments` rows, one per lesson, with prompts and deliverable names sourced from each lesson file.
+- Seed four `lessons` rows in position order: Lesson 1 — What Is Digital Marketing, Lesson 2 — Digital vs. Traditional Marketing, Lesson 3 — Core Digital Marketing Channels, Lesson 4 — Digital Marketing Careers. Full lesson content sourced from the approved Arabic renderings at `academy/learning-paths/digital-marketing/phase-0/module-1/lesson-[nn]/ar.md`. Step 2 cannot begin until all four Arabic renderings are approved.
+- Seed four `assignments` rows, one per lesson, with prompts and deliverable names sourced from the Arabic rendering of each lesson file.
 - Seed one `surveys` row for Module 1.
 - Seed three `survey_questions` rows: one `rating` question, one required `text` question, one optional `text` question, as defined in OA-MVP-004.
+
+**Schema note:** The `lessons.content` column stores a single language value. For v0.1 the seeded value is Arabic (pilot language). No `locale` column is introduced in v0.1. Multi-locale content storage is deferred to the backlog per ADR-0004.
 
 ---
 
