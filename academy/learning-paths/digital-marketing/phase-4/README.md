@@ -21,15 +21,80 @@ Build the analytical capability required to measure, interpret, and communicate 
 
 ## Modules
 
-- Measurement Fundamentals and KPI Frameworks
-- Google Analytics 4 Setup and Navigation
-- Traffic and Engagement Analysis
-- Conversion Tracking and Goal Configuration
-- Attribution Models
-- A/B Testing Methodology
-- Dashboard Design
-- Reporting for Stakeholders
-- Data Quality and Integrity
+### Digital Marketing Measurement
+
+- The Measurement Framework
+- Defining Goals and Success Metrics
+- Quantitative vs. Qualitative Data
+
+---
+
+### Google Analytics 4 (GA4)
+
+- GA4 Account and Property Setup
+- Events, Parameters, and the Data Model
+- Reports and Explorations Overview
+- Audiences and Segments in GA4
+
+---
+
+### Google Tag Manager Fundamentals
+
+- What Is Google Tag Manager
+- Tags, Triggers, and Variables
+- Setting Up a GTM Container
+- Publishing and Debugging Tags
+
+---
+
+### Conversion Tracking
+
+- What Is Conversion Tracking
+- Setting Up Goal Events in GA4
+- Cross-Platform Conversion Tracking
+
+---
+
+### Looker Studio Dashboards
+
+- Introduction to Looker Studio
+- Connecting Data Sources
+- Building a Marketing Dashboard
+- Sharing and Publishing Reports
+
+---
+
+### Attribution Models
+
+- What Is Attribution
+- Attribution Models Compared
+- Choosing the Right Attribution Model
+
+---
+
+### KPI Frameworks
+
+- What Are KPIs
+- KPIs by Channel and Objective
+- Setting Targets and Benchmarks
+- Documenting a KPI Framework
+
+---
+
+### Reporting and Data Storytelling
+
+- Structuring a Marketing Report
+- Data Visualization Best Practices
+- Presenting Insights to Stakeholders
+- Report Cadence and Delivery
+
+---
+
+### Optimization Through Analytics
+
+- Identifying Optimization Opportunities
+- The Test-and-Learn Cycle
+- Documenting and Acting on Insights
 
 ---
 
