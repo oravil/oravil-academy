@@ -19,13 +19,68 @@ Establish the conceptual foundation required to operate within any digital marke
 
 ## Modules
 
-- The Digital Marketing Landscape
-- Owned, Earned, and Paid Media
-- The Marketing Funnel
-- Customer Journey Mapping
-- Audience and Persona Frameworks
-- Web Fundamentals for Marketers
-- Platform and Tool Orientation
+### The Digital Marketing Landscape
+
+- What Is Digital Marketing
+- Digital vs. Traditional Marketing
+- Core Digital Marketing Channels
+- Digital Marketing Careers
+
+---
+
+### Owned, Earned, and Paid Media
+
+- Introduction to Media Types
+- Owned Media
+- Earned Media
+- Paid Media
+
+---
+
+### The Marketing Funnel
+
+- Introduction to the Marketing Funnel
+- Awareness and Consideration
+- Conversion Stage
+- Retention and Advocacy
+
+---
+
+### Customer Journey Mapping
+
+- What Is a Customer Journey
+- Identifying Touchpoints
+- Mapping Stages and Actions
+- Pain Points and Opportunities
+- Building a Journey Map
+
+---
+
+### Audience and Persona Frameworks
+
+- Understanding Target Audiences
+- Market Segmentation
+- Building a Buyer Persona
+- Audience Research Methods
+- Applying Personas
+
+---
+
+### Web Fundamentals for Marketers
+
+- Web Fundamentals
+- Content Management Systems (CMS)
+- Website Structure
+- Website Performance Basics
+
+---
+
+### Platform and Tool Orientation
+
+- The Marketing Technology Landscape
+- Analytics Tools Overview
+- Paid Advertising Platforms
+- Content and Email Tools Overview
 
 ---
 
