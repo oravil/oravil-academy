@@ -117,7 +117,11 @@ Each object in the hierarchy has a single parent and does not exist independentl
 3. Lesson 4 is not accessible until the Lesson 3 assignment is submitted.
 4. The Module Complete screen is not accessible until all four assignments are submitted.
 5. The Post-Module Survey is not accessible until the Module Complete screen has been reached.
-6. Learners cannot navigate backwards to resubmit an assignment already submitted.
+6. Learners may revisit any completed lesson.
+
+Assignments remain editable until the testing window closes.
+
+Only the latest submission is evaluated.
 7. Learners can return to any previously completed lesson to re-read the content at any time.
 
 ---
