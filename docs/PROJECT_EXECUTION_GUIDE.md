@@ -1197,7 +1197,11 @@ The repository is organized around documentation first and implementation second
 
 Every directory has a single responsibility.
 
-Typical structure:
+This repository (`oravil-academy`) is a **documentation and curriculum repository**.
+
+Application source code — backend, frontend, database migrations, and infrastructure — lives in the separate `oravil-academy-platform` repository. See ADR-0002 for the rationale behind this decision.
+
+Typical structure of this repository:
 
 ```
 docs/
@@ -1208,18 +1212,8 @@ docs/
     architecture/
     backlog/
 
-backend/
-
-frontend/
-
-database/
-
 scripts/
-
-tests/
 ```
-
-The exact implementation layout may evolve.
 
 The documentation hierarchy must remain stable.
 
@@ -1797,17 +1791,19 @@ The AI agent is **not** responsible for redefining product strategy.
 
 The AI agent must always work from approved documentation.
 
-Priority order:
+Priority order (highest authority first):
 
-1. PROJECT_EXECUTION_GUIDE.md
-2. Academy Constitution
-3. Content Lifecycle
-4. Standards
+1. Academy Constitution
+2. Content Lifecycle
+3. Standards
+4. Project Execution Guide
 5. Architecture Decision Records (ADR)
 6. Approved Product Documents
 7. Architecture Documents
 8. Implementation Plan
 9. Product Backlog
+
+This order matches the Document Hierarchy defined in Section 16.
 
 Conversation history is never considered authoritative.
 
@@ -2329,7 +2325,11 @@ It should be updated only when a major project milestone is completed.
 
 ### Educational Standards
 
-✅ Complete
+⚠️ Partial
+
+OA-STD-001 (Lesson Standard) published.
+
+Deferred: Content, Quiz, Lab, Case Study, SOP, Markdown, Naming, and Design System standards. See PRODUCT_BACKLOG.md.
 
 ### Curriculum Design
 
@@ -2446,6 +2446,8 @@ The following documents define the current approved baseline.
 - Frontend Architecture
 - Implementation Plan
 - ADR-0001
+- ADR-0002
+- ADR-0003
 
 ---
 

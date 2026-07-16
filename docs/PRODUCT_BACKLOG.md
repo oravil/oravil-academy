@@ -144,3 +144,131 @@ High
 
 Status:
 Deferred
+
+---
+
+### OA-BL-009
+
+Title:
+Author and publish CONTENT_STANDARD.md (OA-STD-002).
+
+Reason:
+CONTENT_STANDARD.md was removed as a placeholder. A formal content standard governing tone, structure, and voice is required before content production scales beyond Module 1.
+
+Priority:
+High
+
+Status:
+Deferred
+
+---
+
+### OA-BL-010
+
+Title:
+Author and publish MARKDOWN_STANDARD.md (OA-STD-003).
+
+Reason:
+A formal Markdown standard governing formatting conventions, heading levels, and file structure is required for consistent document authoring across the repository.
+
+Priority:
+Medium
+
+Status:
+Deferred
+
+---
+
+### OA-BL-011
+
+Title:
+Author and publish NAMING_STANDARD.md (OA-STD-004).
+
+Reason:
+A formal naming standard governing file names, identifiers, and directory names is required before the codebase and curriculum expand significantly.
+
+Priority:
+Medium
+
+Status:
+Deferred
+
+---
+
+### OA-BL-012
+
+Title:
+Author and publish QUIZ_STANDARD.md (OA-STD-005).
+
+Reason:
+A quiz standard is required before quiz production begins in Phase 5.
+
+Priority:
+Medium
+
+Status:
+Deferred
+
+---
+
+### OA-BL-013
+
+Title:
+Author and publish LAB_STANDARD.md (OA-STD-006).
+
+Reason:
+A lab standard is required before lab production begins in Phase 5.
+
+Priority:
+Medium
+
+Status:
+Deferred
+
+---
+
+### OA-BL-014
+
+Title:
+Author and publish CASE_STUDY_STANDARD.md (OA-STD-007).
+
+Reason:
+A case study standard is required before case study production begins in Phase 5.
+
+Priority:
+Medium
+
+Status:
+Deferred
+
+---
+
+### OA-BL-015
+
+Title:
+Author and publish SOP_STANDARD.md (OA-STD-008).
+
+Reason:
+A standard operating procedure standard is required before SOP-based lessons are introduced.
+
+Priority:
+Low
+
+Status:
+Deferred
+
+---
+
+### OA-BL-016
+
+Title:
+Author and publish DESIGN_SYSTEM.md (OA-STD-009).
+
+Reason:
+A design system standard is required before UI development begins on the platform frontend.
+
+Priority:
+Medium
+
+Status:
+Deferred

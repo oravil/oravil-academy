@@ -1,15 +1,16 @@
 # Oravil Academy Roadmap
 
 ## Phase 1 — Foundation
-**Status: Completed**
+**Status: Partial**
 
 - Repository initialized.
 - Governance structure established.
 - Academy Constitution authored and published.
-- Documentation standards defined (Lesson, Content, Quiz, Lab, Case Study, SOP, Markdown, Naming, Design System).
-- Information architecture documented.
-- Terminology and glossary published.
-- AI context files established.
+- OA-STD-001 (Lesson Standard) published.
+- Documentation standards deferred: Content, Quiz, Lab, Case Study, SOP, Markdown, Naming, Design System.
+- Information architecture documented (MVP scope; see OA-MVP-004).
+- Terminology and glossary: deferred.
+- AI context files: deferred.
 
 ---
 
