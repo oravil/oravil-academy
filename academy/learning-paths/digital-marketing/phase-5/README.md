@@ -21,15 +21,81 @@ Develop the ability to plan, brief, and present integrated digital marketing str
 
 ## Modules
 
+### Marketing Strategy Fundamentals
+
+- What Is Marketing Strategy
 - Business Objectives and Marketing Goals
-- Competitive Analysis
-- Channel Mix Strategy
-- Budget Allocation Frameworks
-- The Campaign Brief
-- Integrated Campaign Planning
-- Marketing Calendar and Roadmapping
-- Strategy Presentation Skills
-- Evaluating Strategy Effectiveness
+- The Strategic Planning Process
+- Strategy vs. Tactics
+
+---
+
+### Business and Market Analysis
+
+- Market Research Methods
+- SWOT Analysis
+- PESTLE Analysis
+- Market Sizing and Segmentation
+
+---
+
+### Customer and Competitor Analysis
+
+- Customer Profiling at the Strategic Level
+- Competitive Landscape Mapping
+- Competitor Analysis Frameworks
+- Positioning and Differentiation
+
+---
+
+### Campaign Planning
+
+- The Campaign Planning Process
+- Writing a Campaign Brief
+- Channel Selection and Rationale
+- Campaign Timeline and Milestones
+
+---
+
+### Budgeting and Resource Planning
+
+- Marketing Budget Frameworks
+- Allocating Budget Across Channels
+- Resource Planning and Team Structure
+
+---
+
+### Integrated Marketing Planning
+
+- What Is Integrated Marketing
+- The Integrated Marketing Plan
+- Cross-Channel Coordination
+- Planning for Consistency and Coherence
+
+---
+
+### Risk Management and Decision Making
+
+- Identifying Marketing Risks
+- Decision-Making Frameworks
+- Scenario Planning
+
+---
+
+### Client Communication and Presentation
+
+- Understanding Stakeholder Needs
+- Structuring a Strategy Presentation
+- Presenting Recommendations
+- Managing Feedback and Revisions
+
+---
+
+### Continuous Improvement and Professional Development
+
+- Post-Campaign Reviews
+- Building a Learning Practice
+- Staying Current in Digital Marketing
 
 ---
 
