@@ -307,7 +307,7 @@ survey_responses belongs to one survey_question via survey_question_id. The asso
 5. Each lesson has at most one assignment.
 6. Each module has at most one survey.
 7. A learner may submit at most one response per assignment.
-8. A learner may answer each survey question at most once.
+8. A learner may answer each survey question at most once; survey completion is determined by comparing the learner's answers against the full question list for the relevant survey.
 9. A rating answer must be between 1 and 5 inclusive.
 10. Assignment submission status must be a value from the defined allowed set; in Version 0.1 this is `submitted` only.
 11. Survey question type must be either `rating` or `text`.
@@ -331,4 +331,4 @@ survey_responses belongs to one survey_question via survey_question_id. The asso
 
 ## Future Expansion
 
-The schema is structurally generic. Adding a second learning path requires only new rows in learning_paths, phases, modules, lessons, and assignments — no schema changes. A learner's progress state is fully derivable from assignment_submissions and survey_responses filtered by learning path content, so no learner-path enrolment table is introduced in Version 0.1 but can be added later as a join table between learners and learning_paths without altering existing tables. Additional surveys for future modules require only new rows in surveys and survey_questions. The submission status check constraint on assignment_submissions can be extended in a future migration to permit additional lifecycle values without changing any other table or relationship.
+The schema is structurally generic. Adding a second learning path requires only new rows in learning_paths, phases, modules, lessons, and assignments — no schema changes. A learner's progress state is fully derivable from assignment_submissions and survey_responses filtered by learning path content, so no learner-path enrolment table is introduced in Version 0.1 but can be added later as a join table between learners and learning_paths without altering existing tables. Additional surveys for future modules require only new rows in surveys and survey_questions. Because survey_responses references survey_question_id directly rather than survey_id, adding new surveys introduces no change to the survey_responses table. The submission status check constraint on assignment_submissions can be extended in a future migration to permit additional lifecycle values without changing any other table or relationship.
