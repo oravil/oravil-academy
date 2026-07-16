@@ -31,8 +31,8 @@ Provide a high-level orientation to the major categories of digital marketing ch
 
 ## Key Concepts
 
-- Search marketing (organic and paid)
-- Social media marketing (organic and paid)
+- Search channel
+- Social media channel
 - Email marketing
 - Display advertising
 - Content marketing
