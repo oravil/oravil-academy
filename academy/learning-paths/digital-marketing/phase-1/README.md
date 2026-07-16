@@ -20,15 +20,82 @@ Develop practical competency in organic visibility through content strategy and 
 
 ## Modules
 
+### Content Strategy
+
+- What Is Content Strategy
+- Aligning Content to Business Goals
+- Content Pillars and Topic Clusters
+- Building a Content Strategy Document
+
+---
+
+### Copywriting Fundamentals
+
+- Principles of Effective Web Copy
+- Writing for Clarity and Scannability
+- Headlines and Calls to Action
+- Tone of Voice and Brand Voice
+
+---
+
+### Search Engine Optimization
+
 - How Search Engines Work
-- Keyword Research
+- The SEO Framework
+- SEO as a Marketing Channel
+
+---
+
+### Keyword Research
+
+- Keyword Research Fundamentals
+- Keyword Tools and Techniques
 - Search Intent Classification
-- On-Page SEO
-- Technical SEO Fundamentals
-- Content Strategy and Planning
-- Content Formats and Channel Fit
-- Off-Page SEO and Link Signals
-- Measuring Organic Performance
+- Building a Keyword List
+
+---
+
+### On-Page SEO
+
+- Page Structure and HTML Basics
+- Title Tags and Meta Descriptions
+- Headings, Body Copy, and Internal Links
+- Image Optimization and Alt Text
+
+---
+
+### Technical SEO Basics
+
+- Site Architecture and Crawlability
+- Page Speed and Core Web Vitals
+- Mobile Optimization
+- Sitemaps and Robots.txt
+
+---
+
+### Content Production Workflow
+
+- The Content Production Lifecycle
+- Briefing and Approval Processes
+- Content Style Guides and Templates
+
+---
+
+### Blogging and Editorial Planning
+
+- The Role of a Blog in Content Strategy
+- Editorial Calendar Setup
+- Writing and Structuring a Blog Post
+- Publishing and Promotion Checklist
+
+---
+
+### Content Performance
+
+- Content Metrics and KPIs
+- Tracking Content with Analytics
+- Conducting a Content Audit
+- Iterating Based on Performance Data
 
 ---
 
