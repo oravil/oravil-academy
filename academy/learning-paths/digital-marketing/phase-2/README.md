@@ -21,16 +21,88 @@ Build operational proficiency in paid digital advertising across search and soci
 
 ## Modules
 
-- Paid Media Fundamentals
-- Search Advertising (Google Ads)
-- Campaign and Account Structure
-- Audience Targeting
-- Bidding and Budget Strategy
-- Ad Copy and Creative Principles
-- Social Advertising (Meta Ads)
-- Display and Retargeting
-- Conversion Tracking Setup
-- Campaign Analysis and Optimization
+### Paid Media Fundamentals
+
+- What Is Paid Media
+- The Auction Model and Ad Ranking
+- Paid Media Channel Overview
+
+---
+
+### Google Ads
+
+- Google Ads Account Structure
+- Search Campaign Setup
+- Ad Groups and Keyword Match Types
+- Writing Search Ad Copy
+
+---
+
+### Meta Ads
+
+- Meta Ads Manager Overview
+- Campaign Objectives on Meta
+- Ad Set and Audience Configuration
+- Ad Formats and Creative Specs
+
+---
+
+### Campaign Objectives
+
+- Defining Campaign Goals
+- Matching Objectives to Funnel Stages
+- KPIs by Campaign Objective
+
+---
+
+### Audience Targeting
+
+- Demographic and Geographic Targeting
+- Interest and Behavioral Targeting
+- Custom Audiences and Lookalikes
+- Remarketing Audiences
+
+---
+
+### Budgeting and Bidding
+
+- Budget Types and Spend Controls
+- Manual Bidding Strategies
+- Automated Bidding Strategies
+
+---
+
+### Ad Creative Fundamentals
+
+- Principles of Effective Ad Creative
+- Copywriting for Paid Ads
+- Visual Creative Guidelines
+- Ad Extensions and Enhancements
+
+---
+
+### Campaign Optimization
+
+- Reading Campaign Performance Data
+- A/B Testing Ads
+- Keyword and Audience Refinement
+- Optimization Workflow
+
+---
+
+### Reporting and Performance Analysis
+
+- Core Paid Media Metrics
+- Building a Performance Report
+- Attribution in Paid Media
+
+---
+
+### Compliance and Advertising Policies
+
+- Platform Advertising Policies Overview
+- Common Policy Violations and Fixes
+- Ad Account Health and Compliance Practices
 
 ---
 
