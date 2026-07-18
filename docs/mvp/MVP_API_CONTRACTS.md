@@ -1,10 +1,14 @@
 # MVP API Contracts
 
 **Document ID:** OA-MVP-007
-**Version:** 1.0.0
-**Status:** Approved
+**Version:** 1.1.0
+**Status:** Draft — Pending Product Owner Approval
 **Date:** 2026-07-16
 **Reference:** OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes, OA-MVP-005 MVP Domain Model, OA-MVP-006 MVP Database Schema
+
+---
+
+> **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. An Authentication Contract Gap section has been added to document the undefined token issuance endpoint. See the Authentication Contract Gap section below.
 
 ---
 
@@ -26,7 +30,24 @@ This document defines the API contracts between the frontend and backend for Ver
 
 ## Authentication
 
-Version 0.1 uses token-based authentication. Every request to a protected endpoint must include a bearer token in the Authorization header. The token identifies the authenticated learner. Token issuance and expiry are outside the scope of this document. All endpoints in this document are protected unless stated otherwise. A request with a missing, invalid, or expired token receives a 401 response.
+Version 0.1 uses token-based authentication. Every request to a protected endpoint must include a bearer token in the Authorization header. The token identifies the authenticated learner. Token issuance and expiry are outside the scope of this document. All endpoints in this document are protected unless stated otherwise. A request with a missing, invalid, or expired token receives a 401 response. The token issuance endpoint is not yet defined in this contract. See Authentication Contract Gap section below.
+
+---
+
+## Authentication Contract Gap — Product Owner Decision Required
+
+**⚠ Product Owner Decision Required**
+
+The token issuance endpoint is not defined in the current approved contract (OA-MVP-007). Implementation of the authentication step (Step 3 in OA-MVP-010) cannot proceed until this contract is approved.
+
+The following contract elements must be decided before implementation can begin:
+
+1. **Endpoint path and HTTP method** — What is the route and HTTP method for the token issuance endpoint?
+2. **Request body fields** — What credentials does the learner supply in the request body?
+3. **Success response envelope** — What does a successful authentication response return?
+4. **Success HTTP status code** — What HTTP status code is returned on successful authentication?
+5. **Authentication failure HTTP status code** — 401 is the documented expectation for invalid credentials; however, the full error response envelope requires approval before it is finalised.
+6. **Token lifetime and expiry behaviour** — What is the token lifetime, and is expiry communicated in the response or managed out-of-band?
 
 ---
 
