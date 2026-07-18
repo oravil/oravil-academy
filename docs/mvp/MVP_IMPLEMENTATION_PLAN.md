@@ -8,7 +8,7 @@
 
 ---
 
-> **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. A Vertical Slice Definition of Done section has been added immediately after the existing Definition of Done section.
+> **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. The two overlapping Definition of Done sections have been consolidated into one canonical `## Vertical Slice Definition of Done` section with all eleven required criteria.
 
 ---
 
@@ -66,45 +66,21 @@ Complete a full end-to-end pass of the learner journey: from first access throug
 
 ---
 
-## Definition of Done
-
-A feature is considered complete when all of the following are true:
-
-**Code Complete**
-All backend and frontend code for the feature has been written and reviewed according to the Code Review Rules in this document.
-
-**Tests Pass**
-All unit tests for Domain layer business logic pass. All integration tests for the API endpoint pass against the real database. No existing tests are broken.
-
-**API Integrated**
-The frontend screen consumes the real API endpoint, not a mock or stub. The contract defined in OA-MVP-007 is honoured by both sides.
-
-**UI Integrated**
-The screen is rendered correctly in a browser. All states defined in OA-MVP-004 are reachable and display correctly: default state, loading state, error state, and any empty states.
-
-**Manual Verification Complete**
-A team member who did not write the code has walked through the feature manually and confirmed it behaves as specified in OA-MVP-003 and OA-MVP-004.
-
-**Documentation Updated**
-If the feature required any deviation from an approved architecture document, that document has been updated and the change recorded before the feature is marked done.
-
----
-
 ## Vertical Slice Definition of Done
 
 Each Vertical Slice must satisfy all of the following before it is considered complete:
 
-- [ ] Scope exactly matches declared slice
-- [ ] Documentation updated before implementation when contracts change
-- [ ] API implementation matches approved contract
-- [ ] Database matches approved schema
-- [ ] Tests pass locally
-- [ ] Tests pass in CI
-- [ ] Static analysis passes
-- [ ] Build passes
-- [ ] Code reviewed
-- [ ] No undocumented functionality
-- [ ] No architectural drift
+- [ ] Scope exactly matches the declared slice.
+- [ ] Documentation is updated before implementation when a contract, schema, architecture decision, or business rule changes.
+- [ ] API implementation matches the approved API contract.
+- [ ] Database implementation matches the approved schema.
+- [ ] Tests pass locally.
+- [ ] Tests pass in CI.
+- [ ] Static analysis passes.
+- [ ] Build passes.
+- [ ] Code review is completed.
+- [ ] PR contains no undeclared functionality.
+- [ ] No unresolved architectural drift exists within the slice scope.
 
 ---
 
