@@ -1,10 +1,14 @@
 # MVP Database Schema
 
 **Document ID:** OA-MVP-006
-**Version:** 1.0.0
-**Status:** Approved
+**Version:** 1.1.0
+**Status:** Draft — Pending Product Owner Approval
 **Date:** 2026-07-16
 **Reference:** OA-MVP-005 MVP Domain Model, OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes
+
+---
+
+> **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. The `learners` table identity model has been updated to include `password_hash` and remove `updated_at`. See ADR-0005 for the identity model decision record.
 
 ---
 
@@ -37,8 +41,8 @@ This document defines the PostgreSQL relational schema for Version 0.1 of Oravil
 | id | uuid | No | gen_random_uuid() |
 | email | text | No | — |
 | display_name | text | No | — |
+| password_hash | text | No | — |
 | enrolled_at | timestamptz | No | now() |
-| updated_at | timestamptz | No | now() |
 
 **Primary Key:** id
 

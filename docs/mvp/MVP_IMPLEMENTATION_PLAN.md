@@ -1,10 +1,14 @@
 # MVP Implementation Plan
 
 **Document ID:** OA-MVP-010
-**Version:** 1.0.0
-**Status:** Approved
+**Version:** 1.1.0
+**Status:** Draft — Pending Product Owner Approval
 **Date:** 2026-07-16
 **Reference:** OA-MVP-001 through OA-MVP-009
+
+---
+
+> **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. A Vertical Slice Definition of Done section has been added immediately after the existing Definition of Done section.
 
 ---
 
@@ -83,6 +87,24 @@ A team member who did not write the code has walked through the feature manually
 
 **Documentation Updated**
 If the feature required any deviation from an approved architecture document, that document has been updated and the change recorded before the feature is marked done.
+
+---
+
+## Vertical Slice Definition of Done
+
+Each Vertical Slice must satisfy all of the following before it is considered complete:
+
+- [ ] Scope exactly matches declared slice
+- [ ] Documentation updated before implementation when contracts change
+- [ ] API implementation matches approved contract
+- [ ] Database matches approved schema
+- [ ] Tests pass locally
+- [ ] Tests pass in CI
+- [ ] Static analysis passes
+- [ ] Build passes
+- [ ] Code reviewed
+- [ ] No undocumented functionality
+- [ ] No architectural drift
 
 ---
 

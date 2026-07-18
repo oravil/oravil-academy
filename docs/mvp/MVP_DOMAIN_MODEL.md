@@ -1,10 +1,14 @@
 # MVP Domain Model
 
 **Document ID:** OA-MVP-005
-**Version:** 1.0.0
-**Status:** Approved
+**Version:** 1.1.0
+**Status:** Draft — Pending Product Owner Approval
 **Date:** 2026-07-16
 **Reference:** OA-MVP-001 MVP Product Brief, OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes
+
+---
+
+> **Review Note:** This document was reviewed as part of OA-REV-003 on 2026-07-18. No identity-model `User` references were found. The document consistently uses `Learner` as the authenticated identity entity and is confirmed internally consistent.
 
 ---
 
