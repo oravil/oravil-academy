@@ -1,14 +1,14 @@
 # MVP API Contracts
 
 **Document ID:** OA-MVP-007
-**Version:** 1.1.0
+**Version:** 1.2.0
 **Status:** Draft — Pending Product Owner Approval
-**Date:** 2026-07-16
-**Reference:** OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes, OA-MVP-005 MVP Domain Model, OA-MVP-006 MVP Database Schema
+**Date:** 2026-07-19
+**Reference:** OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes, OA-MVP-005 MVP Domain Model, OA-MVP-006 MVP Database Schema, OA-ADR-0006 Authentication Strategy
 
 ---
 
-> **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. An Authentication Contract Gap section has been added to document the undefined token issuance endpoint. See the Authentication Contract Gap section below.
+> **Review Note:** This document was updated on 2026-07-19 as part of the Authentication Contract Reconciliation (Stage 1). The Authentication Contract Gap has been resolved per Product Owner decision. Authentication is now documented as Sanctum stateful SPA authentication per ADR-0006. VS-001 authentication endpoints (Login, Logout, Current Learner) have been added.
 
 ---
 
@@ -23,35 +23,116 @@ This document defines the API contracts between the frontend and backend for Ver
 1. Resource-oriented — endpoints address domain resources directly; actions are expressed through HTTP methods and resource state rather than verb-based routes.
 2. Predictable responses — every endpoint returns a consistent envelope structure regardless of success or failure.
 3. Explicit validation — all request validation rules are defined here and enforced at the API boundary before any business logic executes.
-4. Stateless requests — every request carries sufficient context to be processed independently; no session state is maintained server-side.
+4. Session-authenticated requests — the first-party SPA authenticates through a stateful Sanctum session; each request carries sufficient context via the session cookie to be authenticated. No ****** is required in request headers for the first-party SPA.
 5. Consistent error handling — all errors follow a single error model; the frontend does not need to handle different error shapes per endpoint.
 
 ---
 
 ## Authentication
 
-Version 0.1 uses token-based authentication. Every request to a protected endpoint must include a bearer token in the Authorization header. The token identifies the authenticated learner. Token issuance and expiry are outside the scope of this document. All endpoints in this document are protected unless stated otherwise. A request with a missing, invalid, or expired token receives a 401 response. The token issuance endpoint is not yet defined in this contract. See Authentication Contract Gap section below.
+Version 0.1 uses Laravel Sanctum stateful SPA authentication as defined in ADR-0006 (OA-ADR-0006). The first-party React SPA authenticates using the Sanctum cookie/session mechanism. Authentication state is maintained through secure HttpOnly session cookies.
+
+All endpoints in this document are protected unless stated otherwise. Protected endpoints require an authenticated Learner session. A request with missing, invalid, or expired authentication state receives a 401 response.
+
+The frontend does not persist ****** tokens in `localStorage`. No Authorization header with a ****** is required for first-party SPA requests.
+
+CSRF protection applies to state-changing authentication and session requests as required by the Sanctum SPA flow. The frontend obtains the Sanctum CSRF cookie before submitting login credentials.
 
 ---
 
-## Authentication Contract Gap — Product Owner Decision Required
+## Authentication Endpoints (VS-001)
 
-**⚠ Product Owner Decision Required**
-
-The token issuance endpoint is not defined in the current approved contract (OA-MVP-007). Implementation of the authentication step (Step 3 in OA-MVP-010) cannot proceed until this contract is approved.
-
-The following contract elements must be decided before implementation can begin:
-
-1. **Endpoint path and HTTP method** — What is the route and HTTP method for the token issuance endpoint?
-2. **Request body fields** — What credentials does the learner supply in the request body?
-3. **Success response envelope** — What does a successful authentication response return?
-4. **Success HTTP status code** — What HTTP status code is returned on successful authentication?
-5. **Authentication failure HTTP status code** — 401 is the documented expectation for invalid credentials; however, the full error response envelope requires approval before it is finalised.
-6. **Token lifetime and expiry behaviour** — What is the token lifetime, and is expiry communicated in the response or managed out-of-band?
+The following endpoints support the approved v0.1 authentication flow for the first-party SPA. These endpoints are within VS-001 scope.
 
 ---
 
-## Endpoints
+### POST /v1/auth/login
+
+**Purpose:** Authenticates a manually provisioned Learner and establishes an authenticated Sanctum SPA session.
+
+**Authentication:** Public — no authenticated session required. CSRF cookie must be obtained before submitting this request as required by the Sanctum SPA flow.
+
+**Request Body:**
+
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+**Response Body:**
+
+```json
+{
+  "learner_id": "string",
+  "email": "string",
+  "display_name": "string"
+}
+```
+
+**Success Status:** 200
+
+**Possible Errors:**
+
+- 401 Unauthorized — invalid credentials (email does not match a provisioned Learner, or password is incorrect).
+- 422 Unprocessable Entity — request validation failure (missing or malformed fields).
+
+All error responses use the Error Model defined in this document.
+
+---
+
+### POST /v1/auth/logout
+
+**Purpose:** Invalidates the authenticated Learner's session and ends the Sanctum SPA session.
+
+**Authentication:** Required — authenticated Learner session.
+
+**Request Body:** None
+
+**Response Body:** None (empty response body)
+
+**Success Status:** 204
+
+**Possible Errors:**
+
+- 401 Unauthorized — no authenticated session or session is invalid/expired.
+
+All error responses use the Error Model defined in this document.
+
+---
+
+### GET /v1/auth/me
+
+**Purpose:** Returns the currently authenticated Learner's profile.
+
+**Authentication:** Required — authenticated Learner session.
+
+**Request Body:** None
+
+**Response Body:**
+
+```json
+{
+  "learner_id": "string",
+  "email": "string",
+  "display_name": "string"
+}
+```
+
+No credential material (e.g. `password_hash`) is included in the response.
+
+**Success Status:** 200
+
+**Possible Errors:**
+
+- 401 Unauthorized — no authenticated session or session is invalid/expired.
+
+All error responses use the Error Model defined in this document.
+
+---
+
+## Content Endpoints
 
 ---
 
@@ -317,7 +398,52 @@ All error responses use the following structure regardless of endpoint:
 
 ---
 
+## Error Status Code Semantics
+
+### 401 Unauthorized
+
+Used when authentication is missing, invalid, or expired. This includes:
+
+- No authenticated session present.
+- Session is invalid or expired.
+- Invalid login credentials (email does not match a provisioned Learner, or password is incorrect).
+
+All 401 responses use the Error Model defined above.
+
+### 403 Forbidden
+
+Used when the Learner is authenticated but is not permitted to access the requested resource or resource state. Examples:
+
+- Attempting to access a locked lesson.
+- Attempting to submit an assignment that is not yet unlocked.
+- Attempting to submit an assignment that has already been submitted.
+- Attempting to access the Module Complete screen before all assignments are submitted.
+- Attempting to access or submit a survey before the module is complete or after the survey has already been submitted.
+
+All 403 responses use the Error Model defined above.
+
+### 404 Not Found
+
+Used when the requested resource does not exist. All 404 responses use the Error Model defined above.
+
+### 422 Unprocessable Entity
+
+Used only for request validation failures — when the request body is syntactically valid but fails the validation rules defined in this contract. Examples:
+
+- Missing required fields.
+- Content below minimum word count.
+- Invalid survey answer format.
+
+All 422 responses use the Error Model defined above, including the `fields` array listing each field that failed validation.
+
+---
+
 ## Validation Rules
+
+### POST /v1/auth/login
+
+- `email` is required and must be a valid email address format.
+- `password` is required and must not be empty.
 
 ### POST /v1/assignments/{assignment_id}/submissions
 

@@ -108,7 +108,7 @@ The frontend is organized by feature domain, mirroring the screen inventory defi
 
 ### Authentication
 
-On application load, the frontend verifies that a valid token exists. If no token is present or the token is rejected by the API with a 401 response, the learner is redirected to the access entry point. The token is attached to every API request by the API layer. No component or Application layer function is responsible for token management.
+On application load, the frontend verifies that an authenticated session exists by querying the current learner endpoint. If no valid session is present or the API responds with a 401, the learner is redirected to the login screen. The API layer handles session cookie management automatically through the Sanctum SPA mechanism (per ADR-0006). No component or Application layer function is responsible for token management or `localStorage` credential storage.
 
 ### Loading States
 
@@ -142,7 +142,7 @@ All interactive elements — buttons, text inputs, rating controls — are opera
 10. The frontend must enforce the same navigation gating rules defined in OA-MVP-003 regardless of direct URL access.
 11. Validation feedback must only appear after a submission attempt; pre-emptive validation is not permitted.
 12. All API errors must be caught and normalized at the API layer boundary; raw error objects must not reach the Presentation layer.
-13. Authentication token management must be handled exclusively by the API layer.
+13. Authentication session state must be handled exclusively by the API layer via the Sanctum SPA cookie mechanism; no component or Application layer function stores or manages credentials.
 14. Shared components must have no dependency on any single feature domain's state.
 15. Every route transition must begin with a server state fetch; the frontend must not resume from a locally cached position.
 

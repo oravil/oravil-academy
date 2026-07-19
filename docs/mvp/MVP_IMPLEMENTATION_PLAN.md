@@ -44,7 +44,7 @@ Establish the repository structure, database connection, authentication token ve
 Seed the database with the learning path, phase, module, lessons, assignments, and survey for Phase 0, Module 1 as defined in OA-MVP-006. This step confirms that all content is correctly structured and queryable before any feature depends on it.
 
 **Step 3 — Authentication**
-Implement the learner authentication flow: token issuance on access and token verification on every subsequent request. This step produces a learner who can authenticate and receive a token that is accepted by the API.
+Implement the learner authentication flow: Sanctum SPA session establishment on login and session verification on every subsequent request. This step produces a learner who can authenticate and establish a session that is accepted by the API.
 
 **Step 4 — Module Overview**
 Implement `GET /v1/modules/{module_id}/overview` and `GET /v1/learners/me/progress/{module_id}`. Implement the Module Overview screen consuming both endpoints. This step produces a working Module Overview that reflects the learner's current progress state.
@@ -116,7 +116,7 @@ Each completed step in the Development Order is manually verified against the ac
 8. No optimistic state update — server state must be re-fetched after every mutation.
 9. No raw error detail exposed in any API response or UI message.
 10. No hardcoded content IDs or lesson counts — all content structure must be sourced from the database.
-11. No authentication token accessed outside the API layer.
+11. No authentication credential or session state accessed outside the API layer.
 12. No validation rule applied in the frontend that is not also enforced by the backend.
 13. Every new public API endpoint must have integration tests covering all documented error codes before merge.
 14. Every Domain layer rule change must have a corresponding unit test before merge.
