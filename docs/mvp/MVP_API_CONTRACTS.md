@@ -23,7 +23,7 @@ This document defines the API contracts between the frontend and backend for Ver
 1. Resource-oriented — endpoints address domain resources directly; actions are expressed through HTTP methods and resource state rather than verb-based routes.
 2. Predictable responses — every endpoint returns a consistent envelope structure regardless of success or failure.
 3. Explicit validation — all request validation rules are defined here and enforced at the API boundary before any business logic executes.
-4. Session-authenticated requests — the first-party SPA authenticates through a stateful Sanctum session; each request carries sufficient context via the session cookie to be authenticated. No ****** is required in request headers for the first-party SPA.
+4. Session-authenticated requests — the first-party SPA authenticates through a stateful Sanctum session; each request carries sufficient context via the session cookie to be authenticated. No bearer token is required in request headers for the first-party SPA.
 5. Consistent error handling — all errors follow a single error model; the frontend does not need to handle different error shapes per endpoint.
 
 ---
@@ -34,7 +34,7 @@ Version 0.1 uses Laravel Sanctum stateful SPA authentication as defined in ADR-0
 
 All endpoints in this document are protected unless stated otherwise. Protected endpoints require an authenticated Learner session. A request with missing, invalid, or expired authentication state receives a 401 response.
 
-The frontend does not persist ****** tokens in `localStorage`. No Authorization header with a ****** is required for first-party SPA requests.
+The frontend does not persist bearer tokens in `localStorage`. No Authorization header with a bearer token is required for first-party SPA requests.
 
 CSRF protection applies to state-changing authentication and session requests as required by the Sanctum SPA flow. The frontend obtains the Sanctum CSRF cookie before submitting login credentials.
 

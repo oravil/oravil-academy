@@ -234,7 +234,7 @@ Sprint 1 is complete when all of the following are true:
 - The Product Owner selected Sanctum SPA cookie-based authentication for the first-party v0.1 SPA.
 - ADR-0006 (Authentication Strategy) created to record this decision.
 - The authentication transport decision from OA-REV-003 F-5 has been documented.
-- The API authentication contract (OA-MVP-007) has been reconciled: ****** requirement for the first-party SPA removed; Sanctum stateful SPA authentication documented; Authentication Contract Gap section resolved.
+- The API authentication contract (OA-MVP-007) has been reconciled: Bearer-token requirement for the first-party SPA removed; Sanctum stateful SPA authentication documented; Authentication Contract Gap section resolved.
 - VS-001 authentication endpoints (Login, Logout, Current Learner) documented in OA-MVP-007.
 - Error status code semantics (401, 403, 404, 422) clarified in OA-MVP-007 per OA-REV-003 F-7.
 - Related documentation updated for consistency: MVP_BACKEND_ARCHITECTURE.md, MVP_FRONTEND_ARCHITECTURE.md, MVP_IMPLEMENTATION_PLAN.md, SPRINT-001.md.
