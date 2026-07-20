@@ -19,7 +19,7 @@ This sprint covers two items from the Implementation Plan:
 
 - Step 1 — Project Foundation (database, authentication infrastructure, health check)
 - Step 2 — Content Seeding (Phase 0, Module 1 content in the database)
-- Step 3 — Authentication (token issuance and verification)
+- Step 3 — Authentication (Sanctum SPA session establishment and verification per ADR-0006)
 - Step 4 — Module Overview (API endpoints and screen)
 
 Step 5 and beyond are explicitly out of scope for this sprint.
@@ -85,7 +85,7 @@ The Module Overview is the learner's entry point into the learning experience. I
 - Seed one `learning_paths` row: Digital Marketing.
 - Seed one `phases` row: Phase 0 — Foundations.
 - Seed one `modules` row: Module 1 — The Digital Marketing Landscape, with deliverable description.
-- Seed four `lessons` rows in position order: Lesson 1 — What Is Digital Marketing, Lesson 2 — Digital vs. Traditional Marketing, Lesson 3 — Core Digital Marketing Channels, Lesson 4 — Digital Marketing Careers. Full lesson content sourced from the published lesson files in `academy/learning-paths/digital-marketing/phase-0/module-1/`.
+- Seed four `lessons` rows in position order: Lesson 1 — What Is Digital Marketing, Lesson 2 — Digital vs. Traditional Marketing, Lesson 3 — Core Digital Marketing Channels, Lesson 4 — Digital Marketing in Practice.
 - Seed four `assignments` rows, one per lesson, with prompts and deliverable names sourced from each lesson file.
 - Seed one `surveys` row for Module 1.
 - Seed three `survey_questions` rows: one `rating` question, one required `text` question, one optional `text` question, as defined in OA-MVP-004.
@@ -166,7 +166,7 @@ A feature in this sprint is complete when all of the following are true:
 
 **UI Integrated:** The Module Overview screen renders correctly in a browser in all states: default (first visit), loading, and error. All lesson statuses display correctly.
 
-**Manual Verification Complete:** A team member who did not write the code has walked through the authentication flow and the Module Overview manually and confirmed they behave as specified in OA-MVP-003 and OA-MVP-004.
+**Manual Verification Complete:** A team member who did not write the code has walked through the authentication flow and the Module Overview manually and confirmed they behave as specified in OA-MVP-003.
 
 **Documentation Updated:** If any deviation from an approved architecture document was required, that document has been updated and the change recorded before the sprint is marked done.
 
@@ -181,10 +181,10 @@ The authentication endpoints are now defined in OA-MVP-007 (v1.2.0) per ADR-0006
 Lesson content is long and structured. Seeding errors (missing assignments, incorrect positions, wrong content) will cause incorrect lesson status display and cascade into every downstream feature. Seeding must be verified independently before backend development depends on it.
 
 **Risk 3 — Domain rule for lesson status is more complex than it appears**
-The lesson status rule depends on reading submission state, which in Sprint 1 does not yet exist for any lesson. The rule must handle the zero-submission case correctly and be tested against it explicitly, not just against future post-submission states.
+The lesson status rule depends on reading submission state, which in Sprint 1 does not yet exist for any lesson. The rule must handle the zero-submission case correctly and be tested against it explicitly.
 
 **Risk 4 — Frontend and backend develop in isolation**
-If the frontend builds against a mock API and the backend is built in parallel without continuous integration checks, the two may diverge before the Integration tasks run. Both sides should reference OA-MVP-007 as the single contract and integrate at the first available opportunity.
+If the frontend builds against a mock API and the backend is built in parallel without continuous integration checks, the two may diverge before the Integration tasks run. Both sides should reference OA-MVP-007 as the single source of truth.
 
 ---
 
@@ -240,3 +240,31 @@ Sprint 1 is complete when all of the following are true:
 - Related documentation updated for consistency: MVP_BACKEND_ARCHITECTURE.md, MVP_FRONTEND_ARCHITECTURE.md, MVP_IMPLEMENTATION_PLAN.md, SPRINT-001.md.
 - Stage 2 (Implementation Reconciliation) remains pending.
 - VS-002 is not authorized — requires F-5 through F-7 closure via implementation reconciliation.
+
+---
+
+**Date:** 2026-07-20
+
+### OA-REV-003 Final Gate Remediation — Stage 1 (Documentation Reconciliation)
+
+- Final Gate Review of oravil-academy-platform PR #8 identified the following documentation/governance reconciliation items.
+
+**Completed:**
+
+- Stale authentication wording in SPRINT-001.md Scope section corrected: Step 3 previously read "token issuance and verification"; updated to "Sanctum SPA session establishment and verification per ADR-0006". This wording conflicted with ADR-0006 and the approved Sanctum SPA cookie/session strategy. Fix applied in this entry.
+
+**Pending — Product Owner Action Required:**
+
+- OA-DIR-001: Not present anywhere in the authoritative documentation repository (oravil/oravil-academy). No file at any path carries the Document ID OA-DIR-001. The document has not been reconstructed or invented. Product Owner must supply and authorize OA-DIR-001 before it can be published.
+
+- CSRF failure semantics: OA-MVP-007 (v1.2.0) defines CSRF protection as part of the Sanctum SPA flow and specifies that the frontend must obtain the CSRF cookie before login. However, the contract does not explicitly define the HTTP status code or error envelope for an invalid or expired CSRF token submitted to a state-changing endpoint. The following decisions require Product Owner input before they can be recorded in OA-MVP-007:
+  - HTTP status for an invalid/expired CSRF token (419, 403, or another value).
+  - Whether the CSRF failure response must conform to the universal error envelope defined in OA-MVP-007, or is handled differently (e.g. as a Laravel framework-level response).
+  - Stable `code` value in the error envelope for CSRF failures, if the envelope applies.
+
+**Governance confirmations as of this entry:**
+
+- OA-REV-003 remains open.
+- PR #8 (oravil-academy-platform) remains unapproved.
+- VS-002 remains unauthorized.
+- No application code, migrations, CI, or schema was modified in this remediation task.
