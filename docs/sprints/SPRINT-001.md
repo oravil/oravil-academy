@@ -282,3 +282,47 @@ Sprint 1 is complete when all of the following are true:
 - PR #8 remains unapproved pending platform code remediation and repeat Final Gate Review.
 - OA-REV-003 remains open.
 - VS-002 remains unauthorized.
+
+---
+
+**Date:** 2026-07-20
+
+### OA-REV-003 Final Closure Verification
+
+**Platform PR #8 — Merged:**
+
+- PR #8 (oravil/oravil-academy-platform — "Reconcile auth foundation to Learner + Sanctum SPA session flow") was merged to `main` by the Product Owner (oravil) at 2026-07-20T19:48:20Z.
+- PR HEAD SHA at merge: `1e0cf70152c917aa0bbcd48d1e2200e30e86dd2d`.
+- Stage 2 platform implementation reconciliation is confirmed present in the merged code (Learner identity, learners table, Sanctum SPA session auth, no localStorage, Zod login validation, TanStack Query for /me, CSRF 419 contract, PHP ^8.4, CI with PostgreSQL/migrations/Pint/PHPStan/Pest).
+
+**CI Status at PR HEAD (1e0cf70152c917aa0bbcd48d1e2200e30e86dd2d):**
+
+- Backend Quality: PASS (conclusion: success, run 29773386490)
+- Frontend Quality: PASS (conclusion: success, run 29773386490)
+- Commitlint: PASS (conclusion: success, run 29773386490)
+
+**M-3 BOM Remediation — Completed:**
+
+- UTF-8 BOM (EF BB BF) removed from `academy/learning-paths/digital-marketing/phase-0/module-1/lesson-01-what-is-digital-marketing.md`.
+- Final repository-wide BOM scan returned zero files.
+
+**M-1 — Unresolved (Documentation Blocker):**
+
+- OA-MVP-006 is at version 1.1.0 and does not document the framework-managed `sessions` table.
+- Pre-merge gate requires OA-MVP-006 to document the sessions table as infrastructure (not a domain entity) and be at v1.2.0 or later.
+- This correction was not completed in any prior documentation task and is not authorized within the scope of this final closure verification task.
+- OA-MVP-006 sessions documentation (M-1) remains an outstanding blocker for formal OA-REV-003 closure.
+
+**M-2 — Unresolved (Documentation Blocker):**
+
+- ADR-0002 (docs/architecture/ADR-0002-code-repository-strategy.md) declares date "2025-07-16". Evidence: git commit e41648f created this file on 2026-07-16T06:03:39Z. The date in the document is incorrect (year 2025 should be 2026).
+- ADR-0003 (docs/architecture/ADR-0003-content-language-policy.md) declares date "2025-07-16". Same commit. Same incorrect year.
+- These corrections were not completed in any prior documentation task and are not authorized within the scope of this final closure verification task.
+- ADR-0002 and ADR-0003 date corrections (M-2) remain outstanding blockers for formal OA-REV-003 closure.
+
+**Governance Confirmations as of This Entry:**
+
+- OA-REV-003 remains open pending Product Owner formal closure recording.
+- PR #8 has been merged to main by the Product Owner. It is no longer "unmerged".
+- VS-002 remains unauthorized until M-1 and M-2 are resolved, OA-REV-003 formal closure is recorded, and Product Owner authorization is granted.
+- No platform code, migrations, CI, or schema was modified in this task.
