@@ -9,7 +9,7 @@
 
 ## Sprint Goal
 
-Deliver a working, authenticated learner session and a fully functional Module Overview screen. At the end of Sprint 1, a learner can authenticate, receive a valid token, and view the Module Overview showing the four lessons of Module 1 with correct initial status — Lesson 1 available, Lessons 2 through 4 locked — backed by real data from the database and confirmed progress state from the API.
+Deliver a working, authenticated learner session and a fully functional Module Overview screen. At the end of Sprint 1, a learner can authenticate, establish a valid session, and view the Module Overview showing the four lessons of Module 1 with correct initial status — Lesson 1 available, Lessons 2 through 4 locked — backed by real data from the database and confirmed progress state from the API.
 
 ---
 
@@ -41,10 +41,10 @@ Authentication is the prerequisite for all learner-specific behaviour — progre
 **Acceptance Criteria:**
 
 1. A learner record can be created in the database with a unique email address.
-2. The learner can authenticate using their credentials and receive a bearer token.
-3. A request to any protected endpoint with no token receives a 401 response.
-4. A request to any protected endpoint with an invalid or expired token receives a 401 response.
-5. A valid token is accepted by the API and the authenticated learner identity is resolved correctly.
+2. The learner can authenticate using their credentials and establish an authenticated session.
+3. A request to any protected endpoint with no authenticated session receives a 401 response.
+4. A request to any protected endpoint with an invalid or expired session receives a 401 response.
+5. A valid session is accepted by the API and the authenticated learner identity is resolved correctly.
 
 ---
 
@@ -97,7 +97,7 @@ The Module Overview is the learner's entry point into the learning experience. I
 - Implement the Domain layer rule: a lesson is `available` if no prior lesson exists or the prior lesson's assignment has a submission in `submitted` status; otherwise `locked`; `complete` if the lesson's own assignment has a submission in `submitted` status.
 - Implement the Domain layer rule: module status is `in_progress` unless all lessons are `complete`.
 - Implement unit tests for both rules before implementing the Application layer.
-- Implement the Authentication application service: create a learner record, issue a token, verify a token, resolve learner identity from a token.
+- Implement the Authentication application service: create a learner record, establish a session, verify a session, resolve learner identity from a session.
 - Implement the Learning Path application service method: retrieve module overview with learner-specific lesson statuses.
 - Implement the Progress application service method: derive progress from confirmed submission events.
 
@@ -105,7 +105,7 @@ The Module Overview is the learner's entry point into the learning experience. I
 
 ### API
 
-- Implement `POST /v1/auth/token` (or equivalent access endpoint) for token issuance.
+- Implement `POST /v1/auth/login`, `POST /v1/auth/logout`, and `GET /v1/auth/me` as specified in OA-MVP-007.
 - Implement `GET /v1/modules/{module_id}/overview` as specified in OA-MVP-007.
 - Implement `GET /v1/learners/me/progress/{module_id}` as specified in OA-MVP-007.
 - Implement the health check endpoint (unauthenticated).
@@ -118,8 +118,8 @@ The Module Overview is the learner's entry point into the learning experience. I
 - Establish the frontend project structure following OA-MVP-009: Presentation, Application, State, and API layers.
 - Implement the API layer function for `GET /v1/modules/{module_id}/overview`.
 - Implement the API layer function for `GET /v1/learners/me/progress/{module_id}`.
-- Implement the API layer function for token issuance.
-- Implement the authentication flow: verify token on load, redirect to access entry if absent or invalid, attach token to all subsequent requests.
+- Implement the API layer function for authentication (login, logout, current learner).
+- Implement the authentication flow: verify session on load, redirect to login if absent or invalid.
 - Implement the Module Overview screen with all components: module title, purpose, deliverable description, lesson list with status indicators (locked / available / complete), and primary action.
 - Implement loading state and error state for the Module Overview screen.
 - Implement the navigation rule: on application load, fetch progress and route to the Module Overview.
@@ -139,17 +139,17 @@ The Module Overview is the learner's entry point into the learning experience. I
 
 - Unit tests: lesson status derivation rule (all three states: locked, available, complete).
 - Unit tests: module status derivation rule (in_progress and complete transitions).
-- Unit tests: authentication token issuance and verification.
-- Integration tests: `GET /v1/modules/{module_id}/overview` — correct response shape, 401 for missing token, 404 for unknown module.
-- Integration tests: `GET /v1/learners/me/progress/{module_id}` — correct response shape, 401 for missing token, 404 for unknown module.
+- Unit tests: authentication session establishment and verification.
+- Integration tests: `GET /v1/modules/{module_id}/overview` — correct response shape, 401 for unauthenticated request, 404 for unknown module.
+- Integration tests: `GET /v1/learners/me/progress/{module_id}` — correct response shape, 401 for unauthenticated request, 404 for unknown module.
 - Manual acceptance: authenticate as a pilot learner, view Module Overview, confirm lesson statuses are correct.
 
 ---
 
 ### Documentation
 
-- Add the authentication endpoint to OA-MVP-007 as an amendment before implementation begins.
-- Update OA-MVP-010 to note that Step 3 (Authentication) requires an API contract amendment.
+- Authentication endpoints are defined in OA-MVP-007 (v1.2.0) per ADR-0006.
+- Update OA-MVP-010 to note that Step 3 (Authentication) uses Sanctum SPA session authentication per ADR-0006.
 - Record the sprint outcome in this file under a Results section once the sprint is closed.
 
 ---
@@ -174,8 +174,8 @@ A feature in this sprint is complete when all of the following are true:
 
 ## Risks
 
-**Risk 1 — Authentication endpoint not in OA-MVP-007**
-The token issuance endpoint is not defined in the approved API contracts. Implementation cannot begin on the authentication API until OA-MVP-007 is amended. This must be resolved in the first day of the sprint.
+**Risk 1 — Authentication endpoint contract resolved**
+The authentication endpoints are now defined in OA-MVP-007 (v1.2.0) per ADR-0006. This risk is resolved.
 
 **Risk 2 — Content seeding is underestimated**
 Lesson content is long and structured. Seeding errors (missing assignments, incorrect positions, wrong content) will cause incorrect lesson status display and cascade into every downstream feature. Seeding must be verified independently before backend development depends on it.
@@ -194,14 +194,14 @@ Sprint 1 is complete when all of the following are true:
 
 1. The database schema for all Sprint 1 tables is applied and verified.
 2. All four lessons, four assignments, and one survey are seeded with content matching the published lesson files.
-3. A learner can authenticate and receive a valid token that is accepted by all protected endpoints.
+3. A learner can authenticate and establish a valid session that is accepted by all protected endpoints.
 4. `GET /v1/modules/{module_id}/overview` returns the correct response for an authenticated learner, with Lesson 1 as `available` and Lessons 2–4 as `locked`.
 5. `GET /v1/learners/me/progress/{module_id}` returns the correct response for an authenticated learner with no prior submissions.
 6. The Module Overview screen renders with the correct module title, purpose, deliverable description, and lesson list with accurate status indicators.
 7. The primary action on the Module Overview screen reads "Begin Lesson 1" on first access.
 8. All unit tests and integration tests for Sprint 1 pass.
 9. Manual acceptance has been completed by a team member who did not write the code.
-10. OA-MVP-007 has been amended to include the authentication endpoint.
+10. OA-MVP-007 includes the authentication endpoints per ADR-0006.
 
 ---
 
@@ -224,3 +224,19 @@ Sprint 1 is complete when all of the following are true:
 ### Governance Reminder
 
 - Future Vertical Slices must not begin implementation before the previous Stage Gate has been approved.
+
+---
+
+**Date:** 2026-07-19
+
+### Authentication Contract Reconciliation (Stage 1)
+
+- The Product Owner selected Sanctum SPA cookie-based authentication for the first-party v0.1 SPA.
+- ADR-0006 (Authentication Strategy) created to record this decision.
+- The authentication transport decision from OA-REV-003 F-5 has been documented.
+- The API authentication contract (OA-MVP-007) has been reconciled: Bearer-token requirement for the first-party SPA removed; Sanctum stateful SPA authentication documented; Authentication Contract Gap section resolved.
+- VS-001 authentication endpoints (Login, Logout, Current Learner) documented in OA-MVP-007.
+- Error status code semantics (401, 403, 404, 422) clarified in OA-MVP-007 per OA-REV-003 F-7.
+- Related documentation updated for consistency: MVP_BACKEND_ARCHITECTURE.md, MVP_FRONTEND_ARCHITECTURE.md, MVP_IMPLEMENTATION_PLAN.md, SPRINT-001.md.
+- Stage 2 (Implementation Reconciliation) remains pending.
+- VS-002 is not authorized — requires F-5 through F-7 closure via implementation reconciliation.

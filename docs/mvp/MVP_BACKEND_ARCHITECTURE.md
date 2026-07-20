@@ -108,7 +108,7 @@ Each feature domain contains its own API handlers, application service, domain l
 
 ### Authentication
 
-Every request passes through a single authentication step at the API layer boundary. The authentication mechanism verifies the bearer token and resolves the authenticated learner identity. This identity is passed explicitly to every application service call. No service resolves the caller identity independently.
+Every request passes through a single authentication step at the API layer boundary. The authentication mechanism verifies the authenticated session (Sanctum stateful SPA authentication per ADR-0006) and resolves the authenticated learner identity. This identity is passed explicitly to every application service call. No service resolves the caller identity independently.
 
 ### Authorization
 
@@ -128,7 +128,7 @@ Unhandled errors are caught at the API layer boundary and returned as a 500 resp
 
 ### Configuration
 
-Environment-specific configuration — database connection, token secret, and any external service credentials — is sourced from the environment at startup and injected into the Infrastructure and Persistence layers. Configuration is never hard-coded and never accessed directly from the Domain or Application layers.
+Environment-specific configuration — database connection, session configuration, and any external service credentials — is sourced from the environment at startup and injected into the Infrastructure and Persistence layers. Configuration is never hard-coded and never accessed directly from the Domain or Application layers.
 
 ---
 
