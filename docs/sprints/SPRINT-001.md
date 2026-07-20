@@ -268,3 +268,17 @@ Sprint 1 is complete when all of the following are true:
 - PR #8 (oravil-academy-platform) remains unapproved.
 - VS-002 remains unauthorized.
 - No application code, migrations, CI, or schema was modified in this remediation task.
+
+---
+
+**Date:** 2026-07-20
+
+### OA-REV-003 Final Gate Remediation — Stage 1B Completion
+
+- OA-DIR-001 was published at the verified authoritative path `docs/directives/OA-DIR-001.md` in commit `aa6bfed14d153601552d9fe04b41c057eeb021ad`.
+- The Product Owner-approved CSRF failure semantics were recorded in OA-MVP-007 v1.3.0: invalid or expired CSRF tokens return HTTP 419 using the existing standard error envelope with stable code `CSRF_TOKEN_MISMATCH`.
+- Documentation remediation for the OA-DIR-001 publication and CSRF contract Final Gate blockers is complete.
+- Platform implementation remediation remains pending.
+- PR #8 remains unapproved pending platform code remediation and repeat Final Gate Review.
+- OA-REV-003 remains open.
+- VS-002 remains unauthorized.

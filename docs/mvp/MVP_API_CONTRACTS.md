@@ -1,14 +1,14 @@
 # MVP API Contracts
 
 **Document ID:** OA-MVP-007
-**Version:** 1.2.0
+**Version:** 1.3.0
 **Status:** Draft — Pending Product Owner Approval
-**Date:** 2026-07-19
+**Date:** 2026-07-20
 **Reference:** OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes, OA-MVP-005 MVP Domain Model, OA-MVP-006 MVP Database Schema, OA-ADR-0006 Authentication Strategy
 
 ---
 
-> **Review Note:** This document was updated on 2026-07-19 as part of the Authentication Contract Reconciliation (Stage 1). The Authentication Contract Gap has been resolved per Product Owner decision. Authentication is now documented as Sanctum stateful SPA authentication per ADR-0006. VS-001 authentication endpoints (Login, Logout, Current Learner) have been added.
+> **Review Note:** This document was updated on 2026-07-20 as part of OA-REV-003 Final Gate Remediation — Stage 1B. The Product Owner-approved CSRF failure contract now defines HTTP 419, the stable error code `CSRF_TOKEN_MISMATCH`, and use of the existing standard Error Model. The prior Authentication Contract Gap remains resolved per ADR-0006.
 
 ---
 
@@ -36,7 +36,7 @@ All endpoints in this document are protected unless stated otherwise. Protected 
 
 The frontend does not persist bearer tokens in `localStorage`. No Authorization header with a bearer token is required for first-party SPA requests.
 
-CSRF protection applies to state-changing authentication and session requests as required by the Sanctum SPA flow. The frontend obtains the Sanctum CSRF cookie before submitting login credentials.
+CSRF protection applies to state-changing authentication and session requests as required by the Sanctum SPA flow. The frontend obtains the Sanctum CSRF cookie before submitting login credentials. A state-changing request with an invalid or expired CSRF token receives a 419 response using the Error Model defined in this document and the stable error code `CSRF_TOKEN_MISMATCH`.
 
 ---
 
@@ -76,6 +76,7 @@ The following endpoints support the approved v0.1 authentication flow for the fi
 **Possible Errors:**
 
 - 401 Unauthorized — invalid credentials (email does not match a provisioned Learner, or password is incorrect).
+- 419 — invalid or expired CSRF token.
 - 422 Unprocessable Entity — request validation failure (missing or malformed fields).
 
 All error responses use the Error Model defined in this document.
@@ -97,6 +98,7 @@ All error responses use the Error Model defined in this document.
 **Possible Errors:**
 
 - 401 Unauthorized — no authenticated session or session is invalid/expired.
+- 419 — invalid or expired CSRF token.
 
 All error responses use the Error Model defined in this document.
 
@@ -209,7 +211,7 @@ All error responses use the Error Model defined in this document.
 
 ### POST /v1/assignments/{assignment_id}/submissions
 
-**Purpose:** Creates an assignment submission for the authenticated learner. A learner may only submit once per assignment. Submission unlocks the next lesson or, if this is the final assignment, transitions the module to complete.
+**Purpose:** Creates an assignment submission for the authenticated learner. A learner may only submit once per assignment. Submission unlocks the next lesson or, if this is the final assignment, completes the module.
 
 **Request Body:**
 
@@ -236,7 +238,7 @@ All error responses use the Error Model defined in this document.
 
 **Success Status:** 201
 
-**Possible Errors:** 401 Unauthorized, 403 Forbidden (assignment not yet unlocked, or already submitted), 404 Not Found, 422 Unprocessable Entity (validation failure)
+**Possible Errors:** 401 Unauthorized, 403 Forbidden (assignment not yet unlocked, or already submitted), 404 Not Found, 419 (invalid or expired CSRF token), 422 Unprocessable Entity (validation failure)
 
 ---
 
@@ -301,7 +303,7 @@ All error responses use the Error Model defined in this document.
 
 ### GET /v1/modules/{module_id}/survey
 
-**Purpose:** Returns the survey for the specified module, including all questions in display order. Only accessible when the module status is `complete` and the learner has not yet submitted a survey response. Returns 403 if the module is not yet complete or the survey has already been submitted.
+**Purpose:** Returns the survey for the specified module, including all questions in display order. Only accessible when the module status is `complete` and the learner has not yet submitted a survey response.
 
 **Request Body:** None
 
@@ -367,7 +369,7 @@ For `text` questions: `answer_text` is required, `answer_rating` is ignored.
 
 **Success Status:** 201
 
-**Possible Errors:** 401 Unauthorized, 403 Forbidden (module not complete, or survey already submitted), 404 Not Found, 422 Unprocessable Entity (validation failure)
+**Possible Errors:** 401 Unauthorized, 403 Forbidden (module not complete, or survey already submitted), 404 Not Found, 419 (invalid or expired CSRF token), 422 Unprocessable Entity (validation failure)
 
 ---
 
@@ -426,6 +428,18 @@ All 403 responses use the Error Model defined above.
 
 Used when the requested resource does not exist. All 404 responses use the Error Model defined above.
 
+### 419 CSRF Token Mismatch
+
+Used when a state-changing request contains an invalid or expired CSRF token.
+
+All 419 responses use the Error Model defined above with:
+
+- `error.code`: `CSRF_TOKEN_MISMATCH`
+- `error.message`: `CSRF token is invalid or expired.`
+- `error.fields`: omitted
+
+The response must not expose internal session details, raw CSRF tokens, expected token values, or framework internals.
+
 ### 422 Unprocessable Entity
 
 Used only for request validation failures — when the request body is syntactically valid but fails the validation rules defined in this contract. Examples:
@@ -465,10 +479,10 @@ All 422 responses use the Error Model defined above, including the `fields` arra
 
 ## Versioning Strategy
 
-All routes are prefixed with `/v1/`. When a breaking change is required, a new version prefix is introduced (for example `/v2/`) and the previous version is maintained until all clients have migrated. Non-breaking additions — new optional response fields, new endpoints — do not require a version increment. Clients must tolerate unknown fields in response bodies.
+All routes are prefixed with `/v1/`. When a breaking change is required, a new version prefix is introduced (for example `/v2/`) and the previous version is maintained until all clients have migrated. Additive changes — new endpoints or new optional response fields — do not require a version increment.
 
 ---
 
 ## Future Expansion
 
-All routes are parameterised by resource identifiers — `module_id`, `lesson_id`, `assignment_id`, `survey_id` — rather than hard-coded to Phase 0, Module 1. Adding a second module or a second learning path requires no new endpoints; the same seven routes serve all modules and all learning paths. Progress and completion endpoints are scoped per module, so a learner enrolled in multiple modules receives independent progress records per module without any structural change to the API. If a new resource type is introduced in a future version — for example an enrolment record or a certificate — it is added as a new endpoint group under the same `/v1/` prefix without modifying existing contracts.
+All routes are parameterised by resource identifiers — `module_id`, `lesson_id`, `assignment_id`, `survey_id` — rather than hard-coded to Phase 0, Module 1. Adding a second module or a second learning path requires no contract changes, only new data.
