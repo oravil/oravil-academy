@@ -1,14 +1,16 @@
 # MVP Database Schema
 
 **Document ID:** OA-MVP-006
-**Version:** 1.1.0
+**Version:** 1.2.0
 **Status:** Draft — Pending Product Owner Approval
-**Date:** 2026-07-16
+**Date:** 2026-07-20
 **Reference:** OA-MVP-005 MVP Domain Model, OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes
 
 ---
 
-> **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. The `learners` table identity model has been updated to include `password_hash` and remove `updated_at`. See ADR-0005 for the identity model decision record.
+> **Review Note (2026-07-18):** This document was updated as part of OA-REV-003 on 2026-07-18. The `learners` table identity model has been updated to include `password_hash` and remove `updated_at`. See ADR-0005 for the identity model decision record.
+>
+> **Review Note (2026-07-20):** A Framework-Managed Infrastructure Tables section has been added (OA-REV-003 M-1) to account for the `sessions` table required by the approved Laravel database-backed session storage strategy (ADR-0006). The `sessions` table is not a domain entity.
 
 ---
 
@@ -257,6 +259,38 @@ Note: The allowed status values are intentionally version-scoped and may expand 
 **Unique Constraints:** (learner_id, survey_question_id) — one answer per learner per question
 
 **Check Constraints:** answer_rating BETWEEN 1 AND 5 (when not null)
+
+---
+
+## Framework-Managed Infrastructure Tables
+
+The following tables are created and managed by the Laravel framework. They are not domain entities and are not part of the Learner domain model or any other business aggregate. Their lifecycle and internal structure are managed by the framework unless this document explicitly states otherwise.
+
+These tables exist because the approved authentication strategy (ADR-0006) requires Laravel database-backed session storage (`SESSION_DRIVER=database`). They are listed here so that the complete set of PostgreSQL tables required to run Version 0.1 is accounted for in one place.
+
+---
+
+### sessions
+
+**Purpose:** Framework-managed table used by Laravel to store database-backed session state. This table supports the Sanctum stateful SPA cookie/session authentication strategy approved in ADR-0006. It is not a domain entity.
+
+| Column | Type | Nullable | Default |
+|---|---|---|---|
+| id | varchar | No | — |
+| user_id | uuid | Yes | — |
+| ip_address | varchar(45) | Yes | — |
+| user_agent | text | Yes | — |
+| payload | text | No | — |
+| last_activity | integer | No | — |
+
+**Primary Key:** id
+
+**Indexes:** user_id, last_activity
+
+**Notes:**
+- This table is created and managed by the Laravel framework as part of the database session driver. Its structure is defined by the platform migration and must not be independently altered.
+- `user_id` references the authenticated learner but is not declared as a foreign key constraint in the migration; Laravel manages this association in application code.
+- This table must not be added to the Domain Model (OA-MVP-005), the API Contracts (OA-MVP-007), or treated as a product feature.
 
 ---
 

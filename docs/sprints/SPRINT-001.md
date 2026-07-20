@@ -282,3 +282,35 @@ Sprint 1 is complete when all of the following are true:
 - PR #8 remains unapproved pending platform code remediation and repeat Final Gate Review.
 - OA-REV-003 remains open.
 - VS-002 remains unauthorized.
+
+---
+
+**Date:** 2026-07-20
+
+### OA-REV-003 Final Reconciliation — M-1, M-2, M-3
+
+**M-1 — Sessions Infrastructure Reconciliation (COMPLETE):**
+
+- Platform directly inspected (oravil/oravil-academy-platform, main branch): `SESSION_DRIVER=database` confirmed in `backend/.env.example`. The `sessions` table migration confirmed in `backend/database/migrations/0001_01_01_000000_create_learners_table.php`.
+- OA-MVP-006 amended from v1.1.0 to v1.2.0 to add a "Framework-Managed Infrastructure Tables" section documenting the `sessions` table as a framework-managed infrastructure table supporting Laravel database-backed session storage and the Sanctum SPA cookie/session authentication strategy (ADR-0006).
+- The `sessions` table is explicitly documented as NOT a domain entity and NOT part of the Learner domain model.
+- No domain table, Learner schema, ADR-0005, or ADR-0006 was modified.
+
+**M-2 — ADR Date Verification (CORRECTED):**
+
+- ADR-0002 (`docs/architecture/ADR-0002-code-repository-strategy.md`) documented date `2025-07-16`. Git evidence: the file was created in commit `e41648f` on `2026-07-16`. The year `2025` is a clerical error. Date corrected to `2026-07-16`.
+- ADR-0003 (`docs/architecture/ADR-0003-content-language-policy.md`) documented date `2025-07-16`. Git evidence: the file was created in the same commit `e41648f` on `2026-07-16`. The year `2025` is a clerical error. Date corrected to `2026-07-16`.
+
+**M-3 — BOM Verification:**
+
+- Scan command: `grep -rlI $'\xEF\xBB\xBF' academy/ docs/`
+- BOM detected in 1 file: `academy/learning-paths/digital-marketing/phase-0/module-1/lesson-01-what-is-digital-marketing.md`
+- BOM removal is NOT authorized by any existing governing requirement in this repository.
+- File was NOT modified. Finding reported to Product Owner for decision.
+
+**Governance confirmations as of this entry:**
+
+- OA-REV-003 remains open.
+- PR #8 (oravil-academy-platform) remains unapproved, subject to Product Owner merge decision.
+- VS-002 remains unauthorized.
+- No application code, migrations, CI, or platform files were modified in this task.
