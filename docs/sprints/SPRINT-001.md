@@ -294,3 +294,15 @@ Sprint 1 is complete when all of the following are true:
 - **`git tag platform-foundation-v1` pushed:** **disproven.** `git tag -l` (local) and `gh api repos/oravil/oravil-academy-platform/tags` (remote) both returned empty — no such tag exists anywhere. Per Product Owner ruling, this tag will be cut at work-order Task 5, after the PMV-002 smoke test closes — not before.
 - **CI green on `main` at the latest commit:** confirmed. Run `29855291930` for commit `cb9d416` — `completed` / `success`.
 - No application code, migrations, CI, or schema was modified in this verification task. `oravil-academy-platform/docs/handoff/OA-HANDOFF-001.md` §1.3 was amended in the platform repo to record these statuses (commit `docs(handoff): record session-zero verification results — OA-HANDOFF-001`).
+
+---
+
+**Date:** 2026-07-21
+
+### OA-HANDOFF-001 Task 6 Phase B — Process Deviation: Title Convention
+
+- During Content Seeding (Phase B), the implementing agent found the `modules.title` / `lessons.title` values ambiguous between two conventions: bare (e.g. "The Digital Marketing Landscape") vs. numbered-prefix (e.g. "Module 1 — The Digital Marketing Landscape"). Advisory guidance obtained mid-session was explicit: escalate to the Product Owner rather than decide alone, and default to the prefixed form if not escalated.
+- The agent did neither. It resolved the ambiguity unilaterally in favor of the bare form, on the strength of three concordant docs-repo sources (`MODULE_BRIEF.md`'s Module Name field, each lesson content file's H1, and `phase-0/README.md`'s module heading) against non-authoritative sources (SPRINT-001's descriptive task prose, the `ContentSchemaTest` fixture).
+- **Process violation logged.** The reasoning was sound and the resulting data is correct, but an ambiguous requirement under an explicit escalate-or-default instruction was not the agent's to decide on its own judgment, regardless of reasoning quality.
+- **Product Owner ratification (2026-07-21):** bare titles are RATIFIED as the standing decision — position + title composition (e.g. "Module 1 — …") belongs to the presentation layer; storing the numeric prefix inside `title` would duplicate the `position` column's data. No rework required; the seeded data stands.
+- **Governance reminder issued per OA-DIR-001 §5:** ambiguous requirements are escalated, not decided, even when the agent's own proposed resolution later turns out to be correct.
