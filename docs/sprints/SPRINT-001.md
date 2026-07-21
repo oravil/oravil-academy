@@ -282,3 +282,15 @@ Sprint 1 is complete when all of the following are true:
 - PR #8 remains unapproved pending platform code remediation and repeat Final Gate Review.
 - OA-REV-003 remains open.
 - VS-002 remains unauthorized.
+
+---
+
+**Date:** 2026-07-21
+
+### OA-HANDOFF-001 Session Zero — Verification Results
+
+- Per OA-HANDOFF-001 (work-order Task 0), the three [DONE-CLAIMED] items from OA-AUDIT-001 were re-verified against the running server with command output, in `oravil-academy-platform`.
+- **`php artisan test` "11 passed / 52 assertions":** reproducible, but only when the shell environment forces `DB_CONNECTION=pgsql` against the live Postgres service — matching what CI's job-level `env:` block does. The bare documented command (`cd backend && php artisan test`, equivalent to `make test`) fails 10/11 on this server, because `phpunit.xml` hardcodes `DB_CONNECTION=sqlite` / `:memory:`, and the `learners`/`sessions` migration uses Postgres-only defaults (`gen_random_uuid()`, `now()`) that SQLite rejects. Logged as backlog; fix deferred to work-order Task 5 (Integration Checkpoint) per Product Owner ruling — remove the hardcoded DB env from `phpunit.xml` so the documented command matches CI without manual overrides.
+- **`git tag platform-foundation-v1` pushed:** **disproven.** `git tag -l` (local) and `gh api repos/oravil/oravil-academy-platform/tags` (remote) both returned empty — no such tag exists anywhere. Per Product Owner ruling, this tag will be cut at work-order Task 5, after the PMV-002 smoke test closes — not before.
+- **CI green on `main` at the latest commit:** confirmed. Run `29855291930` for commit `cb9d416` — `completed` / `success`.
+- No application code, migrations, CI, or schema was modified in this verification task. `oravil-academy-platform/docs/handoff/OA-HANDOFF-001.md` §1.3 was amended in the platform repo to record these statuses (commit `docs(handoff): record session-zero verification results — OA-HANDOFF-001`).
