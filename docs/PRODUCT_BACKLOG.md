@@ -326,3 +326,67 @@ Low
 
 Status:
 Deferred
+
+---
+
+### OA-BL-020
+
+Title:
+Decision required before pilot launch: Arabic pilot language vs. English-only v0.1.
+
+Reason:
+ADR-0004 mandates the pilot runs in Arabic as a derived presentation layer, but the
+current platform pipeline (schema, seeder, frontend) is English-only with no
+translation mechanism — no translation columns, no translations table, no locale
+switching. Product Owner must decide before launch: (a) launch the first pilot in
+English as a documented temporary deviation from ADR-0004, or (b) build the Arabic
+presentation layer first (schema + seeder + frontend work, scope TBD). Blocks pilot
+launch scheduling.
+
+Priority:
+High
+
+Status:
+Deferred
+
+---
+
+### OA-BL-021
+
+Title:
+Pre-pilot visual identity baseline pass across the five MVP screens.
+
+Reason:
+Before the pilot, apply a minimal visual identity (Oravil brand colors, readable
+long-form typography, spacing appropriate for educational content) across the five
+MVP screens. Explicitly NOT the full dynamic/interactive design vision — this is the
+minimum polish needed so that visual impressions don't contaminate the
+methodology-satisfaction signal in the post-module survey (OA-MVP-001 success
+criterion 4: 80% rating 4+/5). Scope: styling only, no new features, no
+gamification.
+
+Priority:
+Medium
+
+Status:
+Deferred
+
+---
+
+### OA-BL-022
+
+Title:
+v0.2 candidate: interactive learning experience.
+
+Reason:
+Dynamic, engaging lesson presentation (interactions, animations, interactive
+knowledge checks with feedback, progress visualizations). Sits alongside the
+existing v0.2 candidates (OA-BL-017 AI-assisted content generation, OA-BL-018
+second learning path). Gated on v0.1 methodology validation; the automated
+quizzes/assessments portion also maps to ROADMAP Phase 5 (Practical Assets).
+
+Priority:
+Low
+
+Status:
+Deferred
