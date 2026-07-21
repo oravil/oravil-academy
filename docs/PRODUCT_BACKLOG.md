@@ -272,3 +272,35 @@ Medium
 
 Status:
 Deferred
+
+---
+
+### OA-BL-017
+
+Title:
+v0.2 candidate: AI-assisted content generation pipeline.
+
+Reason:
+Admin-facing flow where an approved Module Brief generates draft Lesson Briefs, and approved Lesson Briefs generate draft lessons conforming to LESSON_STANDARD.md's 14-section structure, with web search for current sources. Drafts pass through the existing CONTENT_LIFECYCLE quality gates unchanged (Technical Review, Educational Review, Final Approval remain human; per CONTENT_LIFECYCLE §5, an AI agent may not approve its own output). Gated on v0.1 methodology validation per OA-MVP-001 Definition of Success.
+
+Priority:
+Low
+
+Status:
+Deferred
+
+---
+
+### OA-BL-018
+
+Title:
+v0.2 candidate: second learning path (Management).
+
+Reason:
+Validates the path-agnostic methodology claim; requires path-selection UI (out of v0.1 scope) and confirms the sequential-progression rule fits non-marketing content (may need an ADR if branching/optional structures are required). Zero schema changes needed — learning_paths table already supports multiple rows. Gated on v0.1 validation.
+
+Priority:
+Low
+
+Status:
+Deferred
