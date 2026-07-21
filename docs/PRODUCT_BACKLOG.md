@@ -304,3 +304,25 @@ Low
 
 Status:
 Deferred
+
+---
+
+### OA-BL-019
+
+Title:
+Add phase/module position fields to the Module Overview response contract (OA-MVP-007).
+
+Reason:
+MVP_WIREFRAMES.md Screen 1 specifies the module heading as "Phase 0 — Module 1: {title}",
+but GET /v1/modules/{module_id}/overview (OA-MVP-007) returns only a bare `title` — no
+phase number or module position — so the frontend cannot compose that heading without
+inventing data not present in the response. Surfaced implementing VS-002 Phase C
+(OA-HANDOFF-001 Task 7); the frontend renders the bare title in the interim. Requires
+a contract change to OA-MVP-007, so it was not implemented as part of that slice —
+should ride along when a future slice next touches this contract.
+
+Priority:
+Low
+
+Status:
+Deferred
