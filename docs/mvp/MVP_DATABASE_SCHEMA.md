@@ -1,7 +1,7 @@
 # MVP Database Schema
 
 **Document ID:** OA-MVP-006
-**Version:** 1.1.0
+**Version:** 1.2.0
 **Status:** Draft — Pending Product Owner Approval
 **Date:** 2026-07-16
 **Reference:** OA-MVP-005 MVP Domain Model, OA-MVP-002 MVP Information Architecture, OA-MVP-003 MVP User Flows, OA-MVP-004 MVP Wireframes
@@ -9,6 +9,8 @@
 ---
 
 > **Review Note:** This document was updated as part of OA-REV-003 on 2026-07-18. The `learners` table identity model has been updated to include `password_hash` and remove `updated_at`. See ADR-0005 for the identity model decision record.
+
+> **Review Note:** `purpose` column added 2026-07-21 to close the OA-MVP-007 overview contract gap surfaced during VS-002 Phase B. The column was omitted from the original `modules` table definition and Task 6 content seeding; the OA-MVP-007 Module Overview response has required `purpose` since it was written. Added via a follow-up migration rather than editing the original `create_modules_table` migration, since it has already run on live databases.
 
 ---
 
@@ -106,6 +108,7 @@ This document defines the PostgreSQL relational schema for Version 0.1 of Oravil
 | deliverable_description | text | Yes | — |
 | created_at | timestamptz | No | now() |
 | updated_at | timestamptz | No | now() |
+| purpose | text | Yes | — |
 
 **Primary Key:** id
 
