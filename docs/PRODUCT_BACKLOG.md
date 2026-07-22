@@ -424,12 +424,25 @@ Installing react-markdown + remark-gfm for VS-003 (OA-HANDOFF-001 Task 7
 Phase C) OOM-killed `pnpm add` under normal conditions (available memory
 regularly under 200MB with zero swap configured). Worked around with a
 temporary 2GB swapfile for the duration of the install, then torn down —
-not a permanent fix. If the dependency surface keeps growing, either a
-permanent modest swapfile or a memory-class upgrade should be decided
-before it blocks a future session outright.
+not a permanent fix.
+
+The gap between teardown and this resolution proved the risk concrete:
+on 2026-07-22, with swap back at 0B, a genuine OOM storm (system-wide,
+window ~19:55-20:11) killed `mysqld` fourteen times in a restart-crash
+loop and terminated the `make dev` foreground process (`artisan serve`
++ `vite`), interrupting the running dev stack mid-session.
+
+Resolution (2026-07-22): (1) `mysql.service` was found enabled with zero
+consumers in this stack (`DB_CONNECTION=pgsql` throughout; the `mysql`
+block in `config/database.php` is unused Laravel boilerplate; nothing in
+`.env` references it) — stopped and disabled
+(`systemctl stop/disable mysql`), removing its restart-crash-loop as a
+future memory hazard entirely. (2) A 2GB swapfile was recreated at
+`/swapfile`, this time added to `/etc/fstab` so it persists across
+reboots, rather than the prior session's temporary one.
 
 Priority:
 Medium
 
 Status:
-Deferred
+Resolved (2026-07-22)
