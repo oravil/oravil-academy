@@ -446,3 +446,38 @@ Medium
 
 Status:
 Resolved (2026-07-22)
+
+---
+
+### OA-BL-025
+
+Title:
+v0.2 candidate — AI-assisted submission grading with tiered approval.
+
+Reason:
+After a learner submits (VS-004 flow), an AI evaluation job scores the
+submission against the Lesson Brief's rubric and produces structured
+output (per-criterion scores, learner-facing feedback, reviewer-facing
+notes, confidence score). A reviewer/observer screen presents submissions
+alongside AI evaluations for approve/amend/reject. Approval mode is
+configurable per assignment or per course, three tiers: (1)
+human-approved — nothing reaches the learner without reviewer sign-off;
+(2) AI-auto with oversight — published automatically, full audit log,
+retroactive intervention; (3) no approval — direct publish for low-stakes
+exercises. Tier-1 operation generates calibration data (reviewer
+amendments vs AI output) that gates promotion to tier 2 per criterion,
+evidence-based. Requires: submission status expansion via migration
+(evaluated/approved states — CHECK constraint change, OA-MVP-006
+amendment first), evaluations + feedback tables, reviewer role (first
+non-Learner identity — needs an ADR amending ADR-0005), reviewer UI,
+learner feedback display in Lesson View. Gated on v0.1 validation AND on
+manual grading of the pilot cohort's submissions, which produces the
+rubric-calibration baseline this system needs. Sits alongside the
+AI-assisted content generation candidate — together they form the "fully
+intelligent academy" direction.
+
+Priority:
+Medium
+
+Status:
+Deferred
