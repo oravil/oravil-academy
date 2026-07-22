@@ -390,3 +390,46 @@ Low
 
 Status:
 Deferred
+
+---
+
+### OA-BL-023
+
+Title:
+Add a reading-progress indicator to the Lesson View screen.
+
+Reason:
+MVP_WIREFRAMES.md Screen 2 (Lesson View) specifies a reading progress
+indicator; it is documented as informational-only and was not one of the
+six requirements explicitly declared for VS-003 Phase C (OA-HANDOFF-001
+Task 7), so it was deliberately left out of that slice. Purely cosmetic —
+no contract or schema change needed.
+
+Priority:
+Low
+
+Status:
+Deferred
+
+---
+
+### OA-BL-024
+
+Title:
+Server memory margin: dev box runs at ~1.9GB RAM with a history of OOM
+kills during dependency installs.
+
+Reason:
+Installing react-markdown + remark-gfm for VS-003 (OA-HANDOFF-001 Task 7
+Phase C) OOM-killed `pnpm add` under normal conditions (available memory
+regularly under 200MB with zero swap configured). Worked around with a
+temporary 2GB swapfile for the duration of the install, then torn down —
+not a permanent fix. If the dependency surface keeps growing, either a
+permanent modest swapfile or a memory-class upgrade should be decided
+before it blocks a future session outright.
+
+Priority:
+Medium
+
+Status:
+Deferred
