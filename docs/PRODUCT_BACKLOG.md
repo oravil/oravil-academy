@@ -449,6 +449,77 @@ Resolved (2026-07-22)
 
 ---
 
+### OA-BL-026
+
+Title:
+Pilot provisioning tooling (pre-launch, required): artisan commands for
+learner lifecycle management.
+
+Reason:
+ADR-0005 mandates manual learner provisioning with no self-registration,
+but no document defines the mechanism. Product Owner decision (2026-07-23):
+artisan CLI commands, not an admin panel — (a) create learner (email,
+display name, password), (b) reset learner password, (c) export
+submissions for manual rubric grading. Chosen over an admin panel for
+v0.1: 10 learners, one-week window, single grader. Admin panel with a
+non-Learner identity remains a v0.2 candidate and is the natural first
+feature there, since public enrolment is a stated future direction.
+Resolves the provisioning-mechanism open question logged in
+OA-HANDOFF-001 §5.
+
+Priority:
+High
+
+Status:
+Deferred (required before pilot launch)
+
+---
+
+### OA-BL-027
+
+Title:
+learners.preferred_language column — amends ADR-0005.
+
+Reason:
+Product Owner decision (2026-07-23): add a preferred_language column to
+learners, amending ADR-0005's five-column identity model. Requires the
+ADR-0005 amendment (docs first) plus a migration and an OA-MVP-006
+update — documentation precedes code per ADR-0002. Belongs to the i18n
+slice that follows Step 9 of OA-MVP-010 (content translation storage,
+UI string extraction, RTL support, language switcher), not to VS-006.
+Do not implement until that slice begins.
+
+Priority:
+Medium
+
+Status:
+Deferred
+
+---
+
+### OA-BL-028
+
+Title:
+v0.2 candidate — central terminology database (glossary entities).
+
+Reason:
+Product Owner decision (2026-07-23): for the pilot, each translated
+lesson carries its own inline glossary table written directly into the
+lesson content (content work, no schema change) — technical terms stay
+in English in both cases (market-standard vocabulary), explained in the
+glossary. A v0.2 candidate is distinct and richer: glossary entities
+linked to lessons, cross-referenced and browsable as a standing
+reference across the platform, rather than duplicated per lesson.
+Gated on v0.1 validation, alongside the i18n slice.
+
+Priority:
+Low
+
+Status:
+Deferred
+
+---
+
 ### OA-BL-025
 
 Title:
