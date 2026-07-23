@@ -1,10 +1,14 @@
 # MVP User Flows
 
 **Document ID:** OA-MVP-003
-**Version:** 1.0.0
-**Status:** Approved
-**Date:** 2026-07-16
-**Reference:** OA-MVP-001 MVP Product Brief, OA-MVP-002 MVP Information Architecture
+**Version:** 1.1.0
+**Status:** Draft — Pending Product Owner Approval
+**Date:** 2026-07-23
+**Reference:** OA-MVP-001 MVP Product Brief, OA-MVP-002 MVP Information Architecture, OA-MVP-006 MVP Database Schema, OA-MVP-007 MVP API Contracts
+
+---
+
+> **Review Note:** This document was updated on 2026-07-23 as part of OA-MVP-010 Step 9 remediation (finding S9-F-02). The exceptional flow "Learner Edits a Previously Submitted Assignment" described resubmission and submission versioning, contradicting this document's own completion rules and the one-submission-per-assignment rule defined in OA-MVP-005, OA-MVP-006, and OA-MVP-007. The flow has been corrected: a submission is final and may be viewed but not modified.
 
 ---
 
@@ -84,15 +88,11 @@ If a learner closes the product before submitting an assignment, their progress 
 
 The behaviour is identical to Flow 3. The Module Overview reflects the last confirmed completed state. Lessons completed in previous sessions remain accessible for re-reading. The current lesson is the first lesson for which no assignment has been submitted.
 
-### Learner Edits a Previously Submitted Assignment
+### Learner Revisits a Previously Submitted Assignment
 
-Per the navigation rules defined in OA-MVP-002, Learners may update a submitted assignment until the testing window closes.
+Per the submission rules defined in OA-MVP-006 and OA-MVP-007, a learner may submit only once per assignment. Each submission is final.
 
-Each submission is versioned.
-
-Only the latest submission is evaluated for completion.
-
-Earlier submissions are retained for research purposes. Previously submitted assignments may be viewed but not modified. This rule is in place to maintain the integrity of completion data collected for methodology validation.
+Previously submitted assignments may be viewed but not modified. This rule is in place to maintain the integrity of completion data collected for methodology validation.
 
 ---
 

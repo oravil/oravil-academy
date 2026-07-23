@@ -1,10 +1,14 @@
 # MVP Information Architecture
 
 **Document ID:** OA-MVP-002
-**Version:** 1.0.0
-**Status:** Approved
-**Date:** 2026-07-16
+**Version:** 1.1.0
+**Status:** Draft — Pending Product Owner Approval
+**Date:** 2026-07-23
 **Reference:** OA-MVP-001 MVP Product Brief
+
+---
+
+> **Review Note:** This document was updated on 2026-07-23 as part of OA-MVP-010 Step 9 remediation (finding S9-F-02). The Navigation Rules previously included the statements "Assignments remain editable until the testing window closes." and "Only the latest submission is evaluated." These statements contradicted the submission rules defined in OA-MVP-005 (at most one Assignment Submission per Assignment), OA-MVP-006 (one submission record per learner per assignment, unique learner–assignment constraint), and OA-MVP-007 (a learner may only submit once per assignment; 403 on resubmission), and have been removed.
 
 ---
 
@@ -118,10 +122,6 @@ Each object in the hierarchy has a single parent and does not exist independentl
 4. The Module Complete screen is not accessible until all four assignments are submitted.
 5. The Post-Module Survey is not accessible until the Module Complete screen has been reached.
 6. Learners may revisit any completed lesson.
-
-Assignments remain editable until the testing window closes.
-
-Only the latest submission is evaluated.
 7. Learners can return to any previously completed lesson to re-read the content at any time.
 
 ---
