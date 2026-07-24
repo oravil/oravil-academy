@@ -5,6 +5,7 @@
 > Date: 2026-07-16
 > Supersedes: Operational language decisions in ADR-0003 (section: MVP Pilot Language and First Localization Target only)
 > Amended: 2026-07-24 — derived presentation layer broadened to the Arabic Learning Adaptation model; see ADR-0008
+> Amended: 2026-07-24 — file-structure pattern extended to module presentation, survey, and (source-driven) assignment derivatives; Product Owner decision
 
 ---
 
@@ -67,9 +68,48 @@ Each language variant is stored as a separate file inside a named lesson directo
 
 This structure is adopted as a scalability decision. As additional languages are introduced, each is added as a new file inside the existing lesson directory without renaming or reorganizing existing files. The lesson directory name is the stable identifier. The language code is the variant selector.
 
+### Non-Lesson Learner-Facing Derivatives
+
+The derived presentation layer is not limited to lesson bodies. Other learner-facing content requires the same derivation model — a canonical English source, and a separate Arabic derivative file, never authored independently. Product Owner decision (2026-07-24) extends the file-structure pattern above, minimally, to three additional artifact types:
+
+**Module presentation.** The Module Brief (`MODULE_BRIEF.md`) remains the canonical English curriculum/specification artifact and is not translated. Where a module has learner-facing presentation fields (title, purpose, deliverable description — the fields a learner sees on the Module Overview and Module Complete screens), the Arabic derivative is a sibling file at the module directory root:
+
+```
+module-directory/
+    MODULE_BRIEF.md
+    ar.md
+    lesson-01/
+        en.md
+        ar.md
+```
+
+`module-directory/ar.md` contains only the learner-facing presentation fields derived from `MODULE_BRIEF.md` — never the Module Brief's internal planning sections (scope, exit criteria, dependencies, etc.), which the learner never sees.
+
+**Survey.** The governing English survey definition (currently `docs/mvp/MVP_WIREFRAMES.md`, an MVP specification document) remains canonical and is not translated in place — ADR-0003's Repository Language decision keeps specification documents English. The Arabic derivative lives in a dedicated `survey/` directory under the module:
+
+```
+module-directory/
+    survey/
+        ar.md
+```
+
+`survey/ar.md` contains only the persisted, learner-facing seeded survey content — the survey title and question text. It does not contain question types, required/optional flags, ordering keys, or any other machine-readable value; those remain defined solely in the canonical English source and the platform schema.
+
+**Assignments.** No blanket per-lesson assignment derivative is introduced. The rule is source-driven, not lesson-number-driven: where a lesson's persisted assignment content (prompt and deliverable name) is deterministically derivable from that lesson's own `## Deliverable` section and Hands-on Workshop step title, the existing `lesson-0X/ar.md` already serves as the Arabic derivative — no separate file is created. Where the persisted assignment content instead originates from a source other than the lesson body (for example, the Lesson Brief's `## Deliverable` field, when the lesson body has no `## Deliverable` section of its own), a dedicated derivative is required:
+
+```
+module-directory/
+    lesson-01/
+        en.md
+        ar.md
+        assignment.ar.md
+```
+
+`lesson-0X/assignment.ar.md` is created only for lessons whose audited seeded-assignment source is not the lesson body itself. Its presence or absence per lesson is a consequence of where that lesson's persisted assignment content actually originates, not a fixed rule that every lesson gets one.
+
 ### Source Metadata
 
-Every Arabic lesson file must begin with the following metadata block:
+Every Arabic file governed by this ADR — lesson (`ar.md`), module presentation (`ar.md`), survey (`survey/ar.md`), and assignment derivatives (`assignment.ar.md`) alike — must begin with the following metadata block:
 
 ```
 Source: [relative path to the English source file]
@@ -159,6 +199,7 @@ Production effort increases because every approved English lesson requires an ad
 - The Content Lifecycle (OA-GOV-001) must be updated to include the Arabic rendering and Arabic review stages.
 - `docs/references/GLOSSARY.md` must be established and maintained as the single terminology authority.
 - The Product Backlog item for Arabic localization capability is considered active under this ADR.
+- Product Owner decision (2026-07-24): the derivative model extends, minimally, to module presentation (`module-directory/ar.md`), survey content (`module-directory/survey/ar.md`), and — where the source audit requires it — assignment content (`lesson-0X/assignment.ar.md`). This is a targeted extension of the existing lesson-level pattern to the v0.1 content already identified as learner-facing (ADR-0008), not a general localization architecture. It does not introduce locale tables, translation tables, `preferred_language`, a language switcher, an i18n library, or multilingual API contracts. OA-BL-027 remains deferred to v0.2.
 
 ---
 

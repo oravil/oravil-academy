@@ -1,7 +1,7 @@
 # ARABIC LEARNING ADAPTATION STANDARD
 
 > **Document ID:** OA-STD-002
-> **Version:** 1.0.0
+> **Version:** 1.1.0
 > **Status:** Active
 > **Owner:** Oravil Academy
 > **Applies To:** All Arabic learner-facing content produced for Oravil Academy v0.1
@@ -11,6 +11,8 @@
 # 1. Purpose
 
 This document defines the mandatory standard for producing Arabic learner-facing content for Version 0.1: the Arabic Learning Adaptation of approved English lessons, and Arabic learner-facing UI copy.
+
+Per the ADR-0004 amendment of 2026-07-24, the Arabic Learning Adaptation model also governs three non-lesson learner-facing derivative types, each anchored to its own canonical English source: module presentation content (`module-directory/ar.md`, derived from `MODULE_BRIEF.md`), survey content (`module-directory/survey/ar.md`, derived from the governing survey definition), and, where the source audit requires it, assignment content (`lesson-0X/assignment.ar.md`, derived from whatever source actually drives the persisted assignment — the lesson body or, where the lesson body has no `## Deliverable` section, the Lesson Brief). This is a targeted extension, not a general localization architecture — see §9.
 
 It records Product-Owner-approved decisions. It does not reopen them.
 
@@ -72,6 +74,8 @@ It MUST preserve:
 - rubric/evaluation meaning
 
 The Arabic artifact must teach the same approved lesson naturally in Arabic; it must not become a different lesson.
+
+**Non-lesson derivatives.** For module presentation and survey derivatives, "the approved canonical English learning content itself" means the actual governing source of the persisted learner-facing field — `MODULE_BRIEF.md` for module presentation, the governing survey definition for survey content — not a summary or paraphrase of it. For assignment derivatives, the canonical source is whichever artifact actually drives the persisted `assignment_prompt` and `assignment_deliverable_name` for that lesson: the lesson body's own `## Deliverable` section and Workshop step title where those exist, or the Lesson Brief's `## Deliverable` field where the lesson body has none. Anchoring to the wrong source (e.g., paraphrasing the module's internal scope notes instead of its learner-facing purpose statement) is a defect under this standard.
 
 ---
 
@@ -178,6 +182,8 @@ This standard does NOT authorize:
 - an English/Arabic learner toggle
 
 OA-BL-027 remains deferred to v0.2.
+
+The module-presentation, survey, and assignment derivative types (§1) are a targeted, file-level extension of the existing lesson derivative pattern to specific v0.1 learner-facing fields already identified under ADR-0008. They do not constitute, and must not be read as authorizing, a general localization architecture. There remains exactly one learner-facing display language for v0.1.
 
 This standard also does not, by itself, authorize the production of any specific Arabic adaptation. Adaptation production work is tasked separately.
 
