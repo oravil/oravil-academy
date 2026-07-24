@@ -4,6 +4,7 @@
 > Status: Approved
 > Date: 2026-07-16
 > Supersedes: Operational language decisions in ADR-0003 (section: MVP Pilot Language and First Localization Target only)
+> Amended: 2026-07-24 — derived presentation layer broadened to the Arabic Learning Adaptation model; see ADR-0008
 
 ---
 
@@ -43,6 +44,10 @@ Arabic content is a derived presentation layer, not an independent source.
 Every Arabic lesson is produced from an approved English source. Arabic content is never authored independently. The English source remains the canonical record for all content decisions.
 
 If a conflict exists between an Arabic lesson and its English source, the English source is authoritative.
+
+The derived presentation layer produces an **Arabic Learning Adaptation** of each approved English lesson. The Arabic artifact is authored against the approved English lesson — it is neither a literal translation nor a free re-authoring. Rewording and localized examples are permitted. The learning objectives, scope, sequence, required deliverable, and rubric of the English source must not change.
+
+The derived presentation layer covers the full learner-facing experience, not lesson content alone. ADR-0008 (Arabic Learner Presentation) defines the Version 0.1 presentation scope: an Arabic-only learner surface, with English retained as the canonical language for all authoring, specifications, code, APIs, and documentation.
 
 ### File Structure
 

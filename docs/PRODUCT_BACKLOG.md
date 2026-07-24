@@ -343,11 +343,23 @@ English as a documented temporary deviation from ADR-0004, or (b) build the Arab
 presentation layer first (schema + seeder + frontend work, scope TBD). Blocks pilot
 launch scheduling.
 
+Resolution (2026-07-24): ADR-0008 (Arabic Learner Presentation) — option (b).
+Product Owner decision, recorded verbatim: "v0.1 presents an ARABIC-ONLY
+learner-facing experience. English remains canonical for methodology,
+curriculum, briefs, specifications, rubrics, standards, terminology, code,
+APIs, tests, and all documentation." The learner-facing surface is Arabic in
+full (lesson content, assignments, the survey and its questions and rating
+labels, navigation, buttons, status labels, validation and error copy); the
+API contract stays English and the frontend renders Arabic copy keyed on
+error.code — the English error.message is diagnostic only and never shown to
+a learner. Explicitly not in v0.1: i18n library, translation framework,
+language switcher, learners.preferred_language, multilingual storage.
+
 Priority:
 High
 
 Status:
-Deferred
+Resolved (2026-07-24)
 
 ---
 
@@ -493,7 +505,9 @@ Priority:
 Medium
 
 Status:
-Deferred
+Deferred to v0.2 — superseded by ADR-0008. A single learner-facing display
+language means there is no language preference to store. Revisit only if
+pilot data demonstrates a need for learner-selectable language.
 
 ---
 
@@ -511,6 +525,12 @@ glossary. A v0.2 candidate is distinct and richer: glossary entities
 linked to lessons, cross-referenced and browsable as a standing
 reference across the platform, rather than duplicated per lesson.
 Gated on v0.1 validation, alongside the i18n slice.
+
+Confirmation (2026-07-24): the pilot approach stands — inline per-lesson
+glossary tables, no schema change. The Canonical Terminology Glossary
+(docs/references/GLOSSARY.md, designated by ADR-0004 and produced as the
+next governance step) provides the terminology authority behind the inline
+glossaries.
 
 Priority:
 Low

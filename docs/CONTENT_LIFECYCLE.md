@@ -1,7 +1,7 @@
 # CONTENT LIFECYCLE
 
 > **Document ID:** OA-GOV-001
-> **Version:** 1.0.0
+> **Version:** 1.1.0
 > **Status:** Active
 > **Owner:** Oravil Academy
 
@@ -222,7 +222,40 @@ Push
 
 ---
 
-# 9. Future Improvements
+# 9. Arabic Learning Adaptation and Arabic UI Copy
+
+This section governs the Arabic artifacts defined by ADR-0004 (Arabic Presentation Layer) and ADR-0008 (Arabic Learner Presentation).
+
+## Arabic Learning Adaptation
+
+An Arabic Learning Adaptation is the Arabic rendering of an approved English lesson, produced per ADR-0004. It is authored against the approved English lesson — neither a literal translation nor a free re-authoring. Rewording and localized examples are permitted; the learning objectives, scope, sequence, required deliverable, and rubric of the English source must not change.
+
+An Arabic Learning Adaptation passes all four quality gates in Section 6 with an added Arabic linguistic check: the adaptation is verified for Arabic correctness and clarity. No gate may be skipped or combined.
+
+## One-Way Derivation Rule
+
+The English canonical lesson is the source. Derivation runs in one direction only.
+
+- If a canonical English lesson changes, its Arabic Learning Adaptation must be re-reviewed or re-generated to reflect the change (per the ADR-0004 Derivation Rule and Sync Status metadata).
+- The reverse never happens automatically. An Arabic artifact never becomes a source of truth, and no change to an English canonical artifact may originate from an Arabic artifact.
+
+## Arabic UI Copy Review
+
+A lightweight review gate for learner-facing interface strings — navigation, buttons, status labels, validation and error copy, and survey chrome — established under ADR-0008. It is separate from the four content quality gates and applies to the platform's learner-facing UI copy, not to lesson content.
+
+Checklist:
+
+- Arabic correctness and clarity.
+- Consistency with the Canonical Terminology Glossary (`docs/references/GLOSSARY.md`, per ADR-0004).
+- Fitness for the action and context in which the string appears.
+- No stray English learner-facing copy, except intentionally retained canonical technical terminology (ADR-0008).
+- No change to API semantics or business rules.
+
+The Product Owner gives final approval.
+
+---
+
+# 10. Future Improvements
 
 All proposed improvements to this lifecycle are tracked exclusively in `docs/PRODUCT_BACKLOG.md`.
 
