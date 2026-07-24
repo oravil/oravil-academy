@@ -232,6 +232,8 @@ An Arabic Learning Adaptation is the Arabic rendering of an approved English les
 
 An Arabic Learning Adaptation passes all four quality gates in Section 6 with an added Arabic linguistic check: the adaptation is verified for Arabic correctness and clarity. No gate may be skipped or combined.
 
+Production requirements for Arabic Learning Adaptations — derivation, terminology, writing quality, and review verification — are defined in `docs/standards/ARABIC_LEARNING_ADAPTATION_STANDARD.md` (OA-STD-002).
+
 ## One-Way Derivation Rule
 
 The English canonical lesson is the source. Derivation runs in one direction only.
