@@ -3,6 +3,7 @@
 > Document ID: OA-ADR-0003
 > Status: Approved
 > Date: 2025-07-16
+> Superseded: Partially by ADR-0004 (sections: MVP Pilot Language, First Localization Target); further by ADR-0008
 
 ---
 
