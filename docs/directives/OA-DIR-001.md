@@ -107,3 +107,24 @@ silently complying.
 
 **Violations of sections 1, 2, 3, or 4 invalidate the entire work
 product regardless of its technical quality.**
+
+---
+
+## 9. Delegation practice — trial calibration findings (2026-07-24)
+
+Recorded from delegation practice runs. This is a working practice under
+trial — not an adopted architectural standard and not a mandatory rule of
+this directive.
+
+1. Explicit brief constraints successfully prevented a previously observed
+   route-protection overclaim: the delegated agent correctly preserved
+   POST /v1/auth/login as the exception to auth:sanctum.
+
+2. Disclosure compliance was inconsistent across trial runs: one run
+   self-disclosed judgment calls while another initially reported none and
+   surfaced real contradictions only after an explicit follow-up.
+
+3. Operating rule:
+   A delegated agent's "none found" is not sufficient evidence of absence.
+   The orchestrator must always perform or request an explicit second-pass
+   ambiguity/contradiction check before accepting the result.
