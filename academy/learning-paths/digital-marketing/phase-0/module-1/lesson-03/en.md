@@ -34,7 +34,7 @@ Your manager drops a new client brief on your desk. The client is a subscription
 
 She asks: "Which digital channels would you consider for this brief?"
 
-You know from Lesson 2 that digital marketing is a system of connected channels. But now the question is concrete: which channels, and for what?
+You know from Lesson 1 that digital marketing is a system of connected channels. But now the question is concrete: which channels, and for what?
 
 This is a question you will face every time you start working on a client program. The answer requires more than a list of channel names. It requires a map — a working model of what each channel category does, what kind of audience it reaches, and what business purposes it is built to serve.
 
